@@ -1,0 +1,26 @@
+@model ResumeModel.InputModel
+
+<form asp-page="">
+    <div class="row">
+        <div class="col-12">
+            <label asp-for="Title" class="col-form-label"></label>
+            <div class="col">
+                <input asp-for="Title" class="form-control">
+            </div>
+            <span asp-validation-for="Title"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <label asp-for="VideoUrl" class="col-form-label"></label>
+            <div class="col">
+                <input asp-for="VideoUrl" class="form-control">
+            </div>
+            <span asp-validation-for="VideoUrl"></span>
+        </div>
+    </div>
+
+    <div class="my-2">
+        <button type="submit" class="btn btn-outline-dark">ثبت</button>
+    </div>
+</form>

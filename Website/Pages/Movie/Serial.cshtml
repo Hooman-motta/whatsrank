@@ -1,0 +1,18 @@
+@page
+@model Website.Pages.Movie.SerialModel
+@{
+    var pageTitle = "سریال";
+    ViewBag.Title = pageTitle;
+}
+
+<h4 class="page-title">
+    @pageTitle
+</h4>
+
+<p class="page-describe">
+    در این بخش می‌ توانید در نظرسنجی کیفیت سریال‌ها و هنرمندان حاضر در این آثار شرکت کنید.
+</p>
+
+<partial name="_List" model="Model.List" />
+
+<vc:movie-top-ten type="Serial"></vc:movie-top-ten>

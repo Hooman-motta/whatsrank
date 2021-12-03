@@ -1,0 +1,52 @@
+$box-radius:10px;
+
+@mixin user-content {
+    .user-content {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+
+        @include box;
+
+        .box {
+            margin-top: 0 !important;
+
+            .top-box {
+                img {
+                    width: 180px;
+                    height: 165px;
+                    padding: 0.2rem;
+                }
+            }
+
+            .bottom-box {
+                .caption {
+                    .name {
+                        font-size: .6rem;
+                    }
+                }
+
+                .status {
+                    left: 5px;
+                    width: 15px;
+                    height: 15px;
+                    border-radius: 50%;
+                    position: absolute;
+                    background-color: red;
+
+                    &.available {
+                        background-color: green;
+                    }
+                }
+            }
+        }
+
+        @content;
+    }
+}
+
+.user {
+    display: flex;
+    flex-wrap: wrap;
+    @include user-content;
+}

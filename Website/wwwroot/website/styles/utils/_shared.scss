@@ -1,0 +1,67 @@
+.main {
+    color: $tc-gray;
+    min-height: 500px;
+}
+
+.page-title {
+    margin: 1rem 0;
+    line-height: 1.8;
+    color: $tc-white;
+    text-align: center;
+    font-size: $fs-medium;
+}
+
+.page-describe {
+    width: 80%;
+    margin: 1rem auto;
+    color: $tc-gray;
+    text-align: center;
+    font-size: $fs-small;
+}
+
+.section-title {
+    color: $tc-white;
+    text-align: right;
+    margin: 1rem 0;
+
+    i {
+        color: $tc-yellow;
+
+        &::before {
+            content: "\f0d9";
+        }
+    }
+}
+
+.no-data {
+    width: 100%;
+    text-align: center;
+}
+
+.no-auth {
+    display: block;
+    color: $tc-white;
+    text-align: center;
+    font-size: $fs-small - .2;
+}
+
+.swiper-slide {
+    min-height: 250px;
+
+    img {
+        width: 100%;
+        height: 100%;
+        display: block;
+        object-fit: cover;
+    }
+}
+
+.loading-page {
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    color: black;
+    position: fixed;
+    text-align: center;
+    background-color: $web-color-1;
+}

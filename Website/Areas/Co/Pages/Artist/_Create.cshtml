@@ -1,0 +1,55 @@
+@model IndexModel.InputModel
+
+<form asp-page="" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <label asp-for="FormFile" class="col-form-label"></label>
+            <div class="col-sm-12">
+                <input asp-for="FormFile" class="form-control">
+            </div>
+            <span asp-validation-for="FormFile"></span>
+        </div>
+        <div class="col-12 col-md-6">
+            <label asp-for="FullName" class="col-form-label"></label>
+            <div class="col">
+                <input asp-for="FullName" class="form-control">
+            </div>
+            <span asp-validation-for="FullName"></span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <label asp-for="KeyWord" class="col-form-label"></label>
+            <div class="col">
+                <input asp-for="KeyWord" class="form-control">
+            </div>
+            <span asp-validation-for="KeyWord"></span>
+        </div>
+        <div class="col-12 col-md-6" data-picker>
+            <label asp-for="_BirthDate" class="col-form-label"></label>
+            <div data-date>
+                <input asp-for="_BirthDate" class="form-control" readonly>
+                <button type="button" data-trigger>
+                    <i class="las choose"></i>
+                    <i class="las reset"></i>
+                </button>
+            </div>
+            <div data-container></div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <label asp-for="Bio" class="col-form-label"></label>
+            <div class="col-sm-12">
+                <textarea asp-for="Bio" class="form-control">
+            </textarea>
+            </div>
+        </div>
+    </div>
+
+    <div class="my-2">
+        <button type="submit" class="btn btn-outline-dark">ثبت</button>
+    </div>
+</form>

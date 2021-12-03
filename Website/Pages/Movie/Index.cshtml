@@ -1,0 +1,17 @@
+@page
+@model Website.Pages.Movie.IndexModel
+@{
+    var pageTitle = "سینمایی";
+    ViewBag.Title = pageTitle;
+}
+<h4 class="page-title">
+    @pageTitle
+</h4>
+
+<p class="page-describe">
+    در این بخش می‌ توانید در نظرسنجی کیفیت فیلم‌ها و هنرمندان حاضر در این آثار شرکت کنید.
+</p>
+
+<partial name="_List" model="Model.List" />
+
+<vc:movie-top-ten type="Film"></vc:movie-top-ten>

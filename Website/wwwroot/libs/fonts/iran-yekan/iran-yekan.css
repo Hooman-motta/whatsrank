@@ -1,0 +1,8 @@
+@font-face {
+  font-family: 'iran-yekan';
+  src: url('iranyekanweblight.eot');
+  src: url('iranyekanweblight.eot') format('embedded-opentype'),
+    url('iranyekanweblight.woff2') format('woff2');
+  font-style: normal;
+  font-weight: normal;
+}

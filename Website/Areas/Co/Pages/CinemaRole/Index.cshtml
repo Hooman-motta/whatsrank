@@ -1,0 +1,35 @@
+﻿@page
+@model Website.Areas.Co.Pages.CinemaRole.IndexModel;
+@{
+    ViewBag.Title = "cinemarole info";
+}
+<div class="table-container">
+    <div class="table-responsive" id="dataList">
+        <table class="table table-bordered table-striped">
+            <caption class="table-caption"></caption>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>عنوان</th>
+                    <th>عملیات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.List)
+                {
+                    <tr>
+                        <td>0-@item.Id</td>
+                        <td>@item.Title</td>
+                        <td data-change>
+                            <div>
+                                <a asp-page="CinemaRoleInfo" asp-route-id="@item.Id" target="_blank" data-more>
+                                    زیرمجموعه ها
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

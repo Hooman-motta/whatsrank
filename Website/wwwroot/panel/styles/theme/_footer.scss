@@ -1,0 +1,13 @@
+// $text-color:#fff;
+// $hover-color:$web-brown-color;
+
+#footer {
+  padding: .8rem;
+  font-size: .8rem;
+  border-top: $web-border;
+
+  .copy-right {
+    margin: 0;
+    text-align: center;
+  }
+}

@@ -1,0 +1,18 @@
+@page
+@model Website.Pages.VtyStar.IndexModel
+@{
+    var pageTitle = "واریته";
+    ViewBag.Title = pageTitle;
+}
+
+<h4 class="page-title">
+    @pageTitle
+</h4>
+
+<p class="page-describe">
+    در این بخش گزارش ‌هایی در حوزه نقد و تحلیل، خبر و آثار روز ایران و جهان ارائه می‌شود.
+</p>
+
+<partial name="_List" model="Model.List" />
+
+<vc:artist-top-ten></vc:artist-top-ten>

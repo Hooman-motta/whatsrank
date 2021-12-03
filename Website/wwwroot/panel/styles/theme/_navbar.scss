@@ -1,0 +1,44 @@
+$bg-color:#fff;
+
+
+#navbar {
+    border-bottom: $web-border;
+    background-color: $bg-color;
+
+    .navbar-brand {
+        font-weight: bold;
+        color: $web-color-5;
+        font-size: $web-lg-font-size;
+    }
+
+    .collapse {
+        .navbar-nav {
+            align-items: center;
+
+            .nav-item {
+                .nav-link {
+                    padding: 0;
+                    color: $web-color-5;
+
+                    i {
+                        font-size: 1.5rem;
+                    }
+                }
+
+                &.profile {
+                    .dropdown-menu {
+                        padding: 0;
+
+                        li {
+                            .dropdown-item {
+                                padding: .5rem;
+                                font-size: .8rem;
+                                text-align: center;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

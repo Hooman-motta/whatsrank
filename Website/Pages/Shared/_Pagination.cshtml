@@ -1,0 +1,76 @@
+@model Int32
+
+@if (Model > 1)
+{
+    <nav id="paginate">
+        <ul class="pagination pagination-sm justify-content-center ltr">
+            @for (int i = 0; i < Model; i++)
+            {
+                var p = i + 1;
+                <li class="page-item">
+                    <a asp-route-p="@p" class="page-link" data-page="@p">@p</a>
+                </li>
+            }
+        </ul>
+    </nav>
+}
+
+<script>
+    paginate();
+    function paginate() {
+        let pageNumber = 1;
+        let qstring = new URLSearchParams(location.search);
+        let pairs = Object.fromEntries(qstring.entries());
+        if (Object.keys(pairs).length) {
+            pageNumber = pairs.p;
+        }
+        let anchor = document.querySelector(`#paginate .page-link[data-page="${pageNumber}"]`);
+        if (anchor) {
+            anchor.setAttribute("href", "javascript:void(0)");
+            anchor.parentElement.classList.add("active");
+        }
+    }
+</script>
+
+@* <li class="page-item">
+    <a class="page-link" href="#">&laquo;</a>
+    </li>
+
+    <li class="page-item">
+    <a class="page-link" href="#">&raquo;</a>
+    </li> *@
+@*
+    @model ValueTuple<Int32, string>
+
+    @if (Model.Item1 > 1)
+    {
+    <nav id="paginate">
+    <ul class="pagination pagination-sm justify-content-center ltr">
+    @for (int i = 0; i < Model.Item1; i++)
+    {
+    var p = i + 1;
+    <li class="page-item">
+    <a class="page-link" data-page="@p" asp-page="@Model.Item2" asp-route-p="@p">@p</a>
+    </li>
+    }
+    </ul>
+    </nav>
+    }
+
+    <script>
+    paginate();
+    function paginate() {
+    let pageNumber = 1;
+    let qstring = new URLSearchParams(location.search);
+    let pairs = Object.fromEntries(qstring.entries());
+
+    if (Object.keys(pairs).length) {
+    pageNumber = pairs.p;
+    }
+    let anchor = document.querySelector(`#paginate .page-link[data-page="${pageNumber}"]`);
+    if (anchor) {
+    anchor.setAttribute("href", "javascript:void(0)");
+    anchor.parentElement.classList.add("active");
+    }
+    }
+    </script> *@

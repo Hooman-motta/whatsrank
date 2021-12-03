@@ -1,0 +1,20 @@
+@using System.Net;
+@using Microsoft.AspNetCore.Identity;
+
+<!-- website -->
+@using Website
+@using Website.Helper.Utils;
+@using Website.Helper.Vmodel;
+@using Website.Service.SrcIdentity.Configure;
+@using Website.Service.SrcIdentity.UserManager;
+
+<!--  dbhelper -->
+@using DbLayer.Enums;
+@using DbLayer.Identity;
+@using DbLayer.Helper;
+
+<!-- hphelper -->
+@using HpLayer.Extensions;
+
+@addTagHelper *, Website
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers

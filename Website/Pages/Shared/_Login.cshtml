@@ -1,0 +1,54 @@
+@model LoginInputVm
+<div class="modal-content">
+    <div class="modal-header">
+        <h6 class="modal-title">ورود به حساب کاربری</h6>
+    </div>
+    <div class="modal-body">
+        <form method="post" asp-page="/Account/Auth" asp-page-handler="Login" data-ajax="true" data-ajax-method="post"
+            data-ajax-begin="ajaxBegin" data-ajax-complete="ajaxCmpAuth" data-ajax-failure="ajaxFailure">
+            <div class="form-group">
+                <label asp-for="UserName" class="form-label"></label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="form-label"></label>
+                <input asp-for="Password" class="form-control" />
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+            <div class="row mt-3 remember">
+                <div class="col remember-me">
+                    <div class="form-check">
+                        <input asp-for="RememberMe" class="form-check-input">
+                        <label class="form-check-label" for="RememberMe">
+                            مرا به خاطر بسپار
+                        </label>
+                    </div>
+                </div>
+                <div class="col forgot-pass">
+                    <button class="forget">
+                        فراموشی رمز عبور
+                    </button>
+                </div>
+            </div>
+            <div class="form-group mt-3">
+                <button type="submit" class="btn-submit">
+                    ورود
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <h6 class="switch-title">
+            قبلا ثبت نام نکرده اید؟
+        </h6>
+        <button class="switch-auth" data-handler="register">
+            <span>عضویت</span>
+        </button>
+    </div>
+</div>
+<script>
+    $("form").removeData("validator");
+    $("form").removeData("unobtrusiveValidation");
+    $.validator.unobtrusive.parse("form");
+</script>

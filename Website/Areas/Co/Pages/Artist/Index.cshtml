@@ -1,0 +1,90 @@
+﻿@page
+@model Website.Areas.Co.Pages.Artist.IndexModel;
+@{
+    ViewBag.Title = "artists";
+    var createUrl = Url.Page("", "Create");
+}
+<partial name="_Alert" model="Model.Alert" />
+
+<div class="table-container">
+    <div class="table-container-header">
+        <button class="btn btn-outline-dark" onclick='ajaxLoadPartialForm(this)' data-title="افزودن هنرمند"
+            data-url='@createUrl'>
+            افزودن
+        </button>
+        <form method="GET">
+            <input type="text" name="filter" class="form-control">
+            <input type="hidden" value="1" name="p" class="form-control">
+            <button type="submit" class="btn btn-outline-dark">
+                جستجو...
+            </button>
+        </form>
+    </div>
+    <div class="table-responsive" id="dataList">
+        <table class="table table-bordered table-striped">
+            <caption class="table-caption"></caption>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>هنرمند</th>
+                    <th>تصویر</th>
+                    <th>متولد</th>
+                    <th>کلمه کلیدی</th>
+                    <th>خلاصه</th>
+                    <th>عملیات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.List.Any())
+                {
+                    foreach (var item in Model.List)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.FullName</td>
+                            <td data-file>
+                                <a href="javascript:void(0)" data-title="تصویر : @item.FullName" data-url="@item.FileUrl"
+                            onclick="viewModalAsFile(this)">
+                                    <i class="las"></i>
+                                </a>
+                            </td>
+                            <td>
+                                @item._BirthDate
+                            </td>
+                            <td>
+                                @item.KeyWord
+                            </td>
+                            <td data-text>
+                                <a href="javascript:void(0)" data-title="خلاصه ای از : @item.FullName" data-body="@item.Bio"
+                            onclick="viewModalAsText(this)">
+                                    <i class="las"></i>
+                                </a>
+                            </td>
+                            <td data-change>
+                                <div>
+                                    <button type="button" data-edit data-title="ویرایش : @item.FullName"
+                                data-url='@Url.Page("","Edit",new {id=@item.Id})' onclick="ajaxLoadPartialForm(this)">
+                                        <i class="las"></i>
+                                    </button>
+                                    <a asp-page="Acr" asp-route-id="@item.Id"
+                                asp-route-artistname="@item.FullName.ToFriendlyRoute()" target="_blank" data-more>
+                                        نقش
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr data-span></tr>
+                }
+            </tbody>
+        </table>
+        <partial name="_Pagination" model='(Model.List.TotalPages)' />
+    </div>
+</div>
+
+@section Scripts{
+<partial name="_Date" />
+}

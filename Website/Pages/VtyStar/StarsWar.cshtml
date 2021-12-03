@@ -1,0 +1,18 @@
+@page
+@model Website.Pages.VtyStar.StarsWarModel
+@{
+    var pageTitle = "جنگ ستارگان";
+    ViewBag.Title = pageTitle;
+}
+
+<h4 class="page-title">
+    @pageTitle
+</h4>
+
+<p class="page-describe">
+    در این بخش کیفیت 2 ستاره‌ در کنار هم مقایسه می‌شوند.
+</p>
+
+<partial name="_List" model="Model.List" />
+
+<vc:artist-top-ten></vc:artist-top-ten>

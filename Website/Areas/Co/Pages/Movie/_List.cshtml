@@ -1,0 +1,77 @@
+@model Tuple<MovieType,PaginatedList<MovieBaseModel.ListModel>>
+
+<table class="table table-bordered table-striped">
+    <caption class="table-caption"></caption>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>عنوان</th>
+            <th>ژانرها</th>
+            <th>اکران</th>
+            <th>زمان</th>
+            <th>تصویر</th>
+            <th>ایجاد</th>
+            <th>کلمه کلیدی</th>
+            <th>تعداد آراء</th>
+            <th>میانگین</th>
+            <th>عملیات</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Item2.Any())
+        {
+            foreach (var item in Model.Item2)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.Title</td>
+                    <td>@item.Jenres</td>
+                    <td>@item.ReleaseDate</td>
+                    <td>@item.Interval</td>
+                    <td data-file>
+                        <a href="javascript:void(0)" data-title="تصویر : @item.Title" data-url="@item.FileUrl"
+                    onclick="viewModalAsFile(this)">
+                            <i class="las"></i>
+                        </a>
+                    </td>
+                    <td>@item.PersianCreatedDate</td>
+                    <td>@item.KeyWord</td>
+                    <td>@item.VoteCount</td>
+                    <td>@item.DisplayVoteAverage</td>
+
+                    <td data-change>
+                        <div>
+                            <button type="button" data-edit data-title="ویرایش : @item.Title"
+                        data-url='@Url.Page("","Edit",new {id=@item.Id})' onclick="ajaxLoadPartialForm(this)">
+                                <i class="las"></i>
+                            </button>
+                            <form onsubmit="return confirm('آیا از حذف @item.Title مطمئن هستید؟')" asp-page-handler="remove">
+                                <input type="hidden" name="id" value="@item.Id">
+                                <button type="submit" data-trash>
+                                    <i class="las"></i>
+                                </button>
+                            </form>
+                            <a asp-area="Co" asp-page="Amr" asp-route-id="@item.Id"
+                        asp-route-movie="@item.Title.ToFriendlyRoute()" target="_blank" data-more>
+                                ادامه
+                            </a>
+                            @if (Model.Item1 == MovieType.Serial)
+                            {
+                                <a asp-area="Co" asp-page="SerialInfo" asp-route-id="@item.Id"
+                        asp-route-serialinfo="@item.Title.ToFriendlyRoute()" target="_blank" data-more>
+                                    فصل ها
+                                </a>
+                            }
+                        </div>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr data-span></tr>
+        }
+    </tbody>
+</table>
+
+<partial name="_Pagination" model='(Model.Item2.TotalPages)' />

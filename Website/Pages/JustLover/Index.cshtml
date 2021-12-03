@@ -1,0 +1,43 @@
+@page
+@model Website.Pages.JustLover.IndexModel
+@{
+    var pageTitle = "فقط خوره ها";
+    ViewBag.Title = pageTitle;
+}
+
+<h4 class="page-title">
+    @pageTitle
+</h4>
+
+<p class="page-describe">
+    در این بخش حافظه هنری شما به چالش کشیده میشه.
+</p>
+
+@if (Model.List.Any())
+{
+    <div class="justlover">
+        @foreach (var item in Model.List)
+        {
+            <div class="box">
+                <div class="top-box">
+                    <img src="@item.FriendlyUrl" alt="@item.Title">
+                </div>
+                <div class="bottom-box">
+                    <a asp-page="/JustLover/JustLoverInfo" asp-route-id="@item.Id"
+                asp-route-title="@item.Title.ToFriendlyRoute()" class="more">
+                        @item.Title
+                    </a>
+                </div>
+            </div>
+        }
+        <partial name="_Pagination" model='(Model.List.TotalPages)' />
+    </div>
+}
+else
+{
+    <h6 class="no-data">
+        اطلاعاتی وجود ندارد.
+    </h6>
+}
+
+<vc:artist-top-ten></vc:artist-top-ten>

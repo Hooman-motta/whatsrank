@@ -1,0 +1,78 @@
+$width :55px;
+$height :55px;
+
+#top10 {
+    top: 0;
+    left: 5px;
+    display: flex;
+    height: 100vh;
+    overflow: auto;
+    position: fixed;
+    flex-direction: column;
+    padding: .5rem .5rem .5rem 0;
+
+    // firefox scrollbar
+    scrollbar-width: thin;
+
+    // chrome scrollbar
+    &::-webkit-scrollbar {
+        width: 0.2rem;
+    }
+
+    a {
+        margin: .2rem 0;
+        position: relative;
+        border: 1px solid transparent;
+
+        &.more {
+            width: $width;
+            height: $height;
+            display: flex;
+            color: $hc-white;
+            font-size: $fs-small - .1;
+            font-weight: bold;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+            background-color: red;
+            flex-direction: column;
+
+
+            &:hover {
+                color: $tc-white;
+            }
+
+            b {
+                i {
+                    color: yellow;
+                }
+            }
+        }
+
+        img {
+            width: $width;
+            height: $height;
+            border-radius: 50%;
+        }
+
+        span {
+            right: 0;
+            bottom: -6px;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            font-weight: 100;
+            padding: .7rem;
+            font-size: .6rem;
+            position: absolute;
+            border-radius: 50%;
+            align-items: center;
+            justify-content: center;
+        }
+
+        &:not(:first-child):hover {
+            border: $b-type-1;
+            border-radius: 50%;
+        }
+    }
+}

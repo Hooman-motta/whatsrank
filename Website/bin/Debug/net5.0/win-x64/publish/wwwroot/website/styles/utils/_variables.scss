@@ -1,0 +1,79 @@
+// colors
+$web-color-1: white;
+$web-color-2: #212329;
+$web-color-3: #282932;
+$web-color-4: #f5c518;
+$web-color-5: #676777;
+
+
+// ### 
+// ### contracts 
+// ### 
+// b => border
+// tc => text color
+// fs => font size
+// hc => hover color
+// bgc => background color
+// bs => box shadow
+// br => border radius
+//  
+
+
+// ### 
+// ### font family 
+// ### 
+$font-family: "iran-yekan";
+
+
+// ### 
+// ### font family 
+// ### 
+$bgc-type-1:$web-color-2;
+$bgc-type-2:$web-color-3;
+$bgc-type-3:$web-color-4;
+$bgc-type-4:$web-color-5;
+
+
+// ### 
+// ### text color 
+// ### 
+$tc-white:#fff;
+$tc-gray:$web-color-5;
+$tc-yellow:$web-color-4;
+$tc-link:#4696ff;
+$tc-dark:$web-color-2;
+
+
+// ### 
+// ### hover color 
+// ### 
+$hc-gray:$web-color-5;
+$hc-white:$web-color-1;
+$hc-yellow:$web-color-4;
+
+// ### 
+// ### border 
+// ### 
+$b-type-0:1px solid #80808026;
+$b-type-1:1px solid $web-color-5;
+$b-type-2:1px solid $web-color-4;
+
+
+// ### 
+// ### font size 
+// ### 
+$fs-small:.8rem;
+$fs-medium:1.2rem;
+$fs-large:1.5rem;
+
+
+// ### 
+// ### box shadow
+// ### 
+$bs-small: 0px 12px 20px #000000;
+
+
+// ### 
+// ### border radius
+// ### 
+// $br-small: 2px;

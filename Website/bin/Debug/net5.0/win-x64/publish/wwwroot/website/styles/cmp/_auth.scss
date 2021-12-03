@@ -1,0 +1,152 @@
+$border: 1px solid #878787;
+
+// auth
+#authModal {
+
+    .modal-content {
+        background-color: $bgc-type-2;
+
+        .modal-header {
+            padding: .8rem .2rem;
+            border-bottom: $b-type-0;
+            justify-content: center;
+
+            .modal-title {
+                font-weight: bold;
+                color: $tc-white;
+            }
+        }
+
+        .modal-body {
+            padding: 1rem 2rem;
+
+
+            .remember {
+                .remember-me {
+                    .form-check {
+                        display: flex;
+                        align-items: center;
+
+                        input {
+                            color: $tc-white;
+                        }
+
+                        label {
+                            color: $tc-white;
+                            font-size: $fs-small;
+                            margin-right: .5rem;
+                        }
+                    }
+                }
+
+                .forgot-pass {
+                    display: flex;
+                    justify-content: flex-end;
+
+                    .forget {
+                        border: none;
+                        color: $tc-white;
+                        font-size: $fs-small;
+                        background-color: transparent;
+
+                        &:hover {
+                            color: $tc-yellow;
+                        }
+                    }
+                }
+            }
+
+            @include btn-submit {
+                width: 100%;
+                padding: .7rem;
+                display: block;
+            }
+
+            input {
+                direction: ltr !important;
+            }
+        }
+
+        .modal-footer {
+            display: flex;
+            border-top: $b-type-0;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+
+            .switch-title {
+                display: flex;
+                color: $tc-white;
+                font-weight: bold;
+                font-size: $fs-small - .1;
+                justify-content: center;
+            }
+
+            .switch-auth {
+                border: none;
+                cursor: pointer;
+                color: $tc-yellow;
+                text-align: center;
+                border-radius: 5px;
+                font-size: $fs-small;
+                background-color: transparent;
+
+                &:hover {
+                    color: $tc-gray;
+                }
+            }
+        }
+    }
+}
+
+.profile {
+    .dropdown-toggle {
+        border: none;
+        color: $tc-white;
+        background-color: transparent;
+
+        &:hover {
+            color: $tc-gray;
+        }
+    }
+
+    .dropdown-menu {
+        padding: 0;
+        border: $b-type-1;
+        background-color: $bgc-type-2;
+
+        .dropdown-item {
+            padding: 0;
+
+            &:first-child {
+                border-bottom: $b-type-1;
+            }
+
+            a,
+            form button {
+                width: 100%;
+                margin: auto;
+                display: flex;
+                padding: .8rem 0;
+                font-size: $fs-small;
+                color: $tc-white !important;
+                justify-content: center;
+
+                &:hover {
+                    color: $tc-gray !important;
+                }
+
+                i {
+                    color: $tc-yellow;
+                    font-size: 1.2rem;
+                    margin-left: .5rem;
+                }
+            }
+
+
+            &:hover {
+                background-color: $bgc-type-2;
+            }
+        }
+    }
+}

@@ -1,0 +1,12 @@
+E:\Website\whatsrank\HpLayer\bin\release\net5.0\HpLayer.deps.json
+E:\Website\whatsrank\HpLayer\bin\release\net5.0\HpLayer.dll
+E:\Website\whatsrank\HpLayer\bin\release\net5.0\ref\HpLayer.dll
+E:\Website\whatsrank\HpLayer\bin\release\net5.0\HpLayer.pdb
+E:\Website\whatsrank\HpLayer\obj\release\net5.0\HpLayer.GeneratedMSBuildEditorConfig.editorconfig
+E:\Website\whatsrank\HpLayer\obj\release\net5.0\HpLayer.AssemblyInfoInputs.cache
+E:\Website\whatsrank\HpLayer\obj\release\net5.0\HpLayer.AssemblyInfo.cs
+E:\Website\whatsrank\HpLayer\obj\release\net5.0\HpLayer.csproj.CoreCompileInputs.cache
+E:\Website\whatsrank\HpLayer\obj\release\net5.0\HpLayer.dll
+E:\Website\whatsrank\HpLayer\obj\release\net5.0\ref\HpLayer.dll
+E:\Website\whatsrank\HpLayer\obj\release\net5.0\HpLayer.pdb
+E:\Website\whatsrank\HpLayer\obj\release\net5.0\HpLayer.csproj.AssemblyReference.cache

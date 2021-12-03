@@ -1,0 +1,131 @@
+@page "{id}"
+@model Website.Pages.Artist.ArtistInfoModel
+@{
+    ViewBag.Title = Model.ViewResult.FullName;
+    ViewBag.MetaKeywords = Model.ViewResult.KeyWord;
+}
+
+<section class="page-info artist-info">
+    <div class="row top-page">
+        <div class="col-12 col-md-3 right">
+            <img src="@Model.ViewResult.FriendlyUrl" alt="@Model.ViewResult.FullName">
+        </div>
+
+        <article class="col-12 col-md-8 left">
+            <header class="left-top">
+                <div class="caption">
+                    <h4 class="caption-title">
+                        @Model.ViewResult.FullName
+                    </h4>
+                    <div class="caption-detail">
+                        <span>
+                            @Model.ViewResult.CinemaRoles
+                        </span>
+                        <span>
+                            متولد :
+                            @Model.ViewResult.BirthDate
+                        </span>
+                    </div>
+                </div>
+                <div class="vote">
+                    <i class="las la-star"></i>
+                    <small>
+                        <b>@Model.Vote.DisplayVoteAverage</b>
+                        <b>@Model.Vote.VoteCount رای</b>
+                    </small>
+                </div>
+            </header>
+
+            <div class="left-summary">
+                <h6 class="title">
+                    بیوگرافی :
+                </h6>
+                <p class="bio">
+                    @Model.ViewResult.Bio
+                </p>
+            </div>
+        </article>
+    </div>
+
+    <div class="middle-page">
+        <!-- بازیگران -->
+        <div class="section-title">
+            <i class="las"></i>
+            <span>آثار @Model.ViewResult.FullName</span>
+        </div>
+
+        <div class="middle-content">
+            @foreach (var item in Model.ViewResult.Movie.ToList())
+            {
+                <div class="box small-box">
+                    <div class="top-box">
+                        <img src="@item.FriendlyUrl" alt="@item.MovieTitle">
+                    </div>
+                    <div class="bottom-box">
+                        <div class="vote">
+                            <small class="avg">
+                                <i class="las la-star"></i>
+                                <b>@item.DisplayVoteAverage</b>
+                            </small>
+                        </div>
+                        <div class="caption">
+                            <a class="name-link" asp-page="/Movie/MovieInfo" asp-route-id="@item.MovieId"
+                            asp-route-title="@item.MovieTitle.ToFriendlyRoute()">
+                                <b class="name">@item.MovieTitle</b>
+                            </a>
+                            <b class="role">@item.RoleInMovie</b>
+                        </div>
+                        <partial name="_VoteSelect" model='new VoteSelectVm{
+                            ItemId=item.AMRId,
+                            MarkValue=item.UserMark,
+                            RouteId=item.MovieId,
+                            HandlerUrl="ArtistVote",
+                            PageUrl="/Movie/MovieInfo",
+                            UqId="amr"
+                        }' />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- هنرمند های مشابه -->
+    <div class="similar-page">
+        <div class="section-title">
+            <i class="las"></i>
+            <span>هنرمند های مشابه</span>
+        </div>
+
+        <div class="swiper-container mySwiper">
+            <div class="swiper-wrapper">
+                @foreach (var item in Model.ViewResult.SimilarArtist)
+                {
+                    <div class="swiper-slide">
+                        <div class="box">
+                            <div class="top-box">
+                                <img src="@item.FriendlyUrl" alt="@item.FullName">
+                            </div>
+                            <div class="bottom-box">
+                                <a class="more" asp-page="/Artist/ArtistInfo" asp-route-id="@item.ArtistId"
+                                asp-route-title="@item.FullName.ToFriendlyRoute()">
+                                    <b class="name">@item.FullName</b>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+<script src="~/libs/swiper/swiper.js"></script>
+<script>
+    const count = swipperCount();
+    new Swiper(".mySwiper", {
+        spaceBetween: 30,
+        slidesPerView: count
+    });
+</script>
+}

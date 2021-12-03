@@ -1,0 +1,38 @@
+@*<div class="user">
+    <div class="user-content">
+    @if (Model.ViewResult.FinalData.Any())
+    {
+    @foreach (var item in Model.ViewResult.FinalData)
+    {
+    <div class="box">
+    <div class="top-box">
+    <img src="@item.Avatar" alt="@item.DisplayName">
+    </div>
+    <div class="bottom-box">
+    <div class="vote">
+    <small class="avg">
+    <i class="las la-star"></i>
+    <b>@item.DisplayVoteAverage</b>
+    </small>
+    </div>
+    <div class="caption">
+    <b class="name">@item.Roles</b>
+    <b class="role">@item.Province</b>
+    </div>
+    <a class="more" asp-page="/User/UserInfo" asp-route-id="@item.Id">
+    <b class="name">@item.DisplayName</b>
+    </a>
+    <b class='status @(item.IsAvailable ? "available" : "")'></b>
+    </div>
+    </div>
+    }
+    <partial name="_Pagination" model='(Model.ViewResult.PagesCount,"/User/Index")' />
+    }
+    else
+    {
+    <h6 class="no-data">
+    اطلاعاتی وجود ندارد.
+    </h6>
+    }
+    </div>
+    </div> *@

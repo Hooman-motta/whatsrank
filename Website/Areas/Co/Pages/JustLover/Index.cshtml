@@ -1,0 +1,112 @@
+﻿@page
+@model Website.Areas.Co.Pages.JustLover.IndexModel;
+@{
+    ViewBag.Title = "just lover";
+    var createUrl = Url.Page("", "Create");
+}
+<partial name="_Alert" model="Model.Alert" />
+<div class="table-container">
+    <div class="table-container-header">
+        <button class="btn btn-outline-dark" onclick='ajaxLoadPartialForm(this)' data-title="افزودن فقط خوره ها"
+            data-url='@createUrl'>
+            افزودن
+        </button>
+        <form method="GET">
+            <input type="text" name="filter" class="form-control">
+            <input type="hidden" value="1" name="p" class="form-control">
+            <button type="submit" class="btn btn-outline-dark">
+                جستجو...
+            </button>
+        </form>
+    </div>
+    <div class="table-responsive" id="dataList">
+        <table class="table table-bordered table-striped">
+            <caption class="table-caption"></caption>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>عنوان</th>
+                    <th>منقضی</th>
+                    <th>سوال</th>
+                    <th>محتوا</th>
+                    <th>تاریخ</th>
+                    <th>گزینه 1</th>
+                    <th>گزینه 2</th>
+                    <th>گزینه 3</th>
+                    <th>گزینه 4</th>
+                    <th>درست</th>
+                    <th>عملیات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.List.Any())
+                {
+                    foreach (var item in Model.List)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>
+                                @item.Title
+                            </td>
+                            <td data-change>
+                                <input class="form-check-input" type="checkbox" onchange="ajaxCheckBox(this)"
+                                    @(item.IsExpired ? "checked" : null) data-url='@Url.Page("","Expire",new
+                                    {id=@item.Id})'>
+                            </td>
+                            <td data-info title="@item.Question">
+                                <i class="las"></i>
+                            </td>
+                            <td data-file>
+                                <a href="javascript:void(0)" data-title="@item.Title" data-url="@item.FileUrl"
+                            data-type='@(item.ViewType==JustLoverType.Fram ? "BITMAP" : "SOUND")'
+                            onclick="viewModalAsFile(this)">
+                                    <i class="las"></i>
+                                </a>
+                            </td>
+                            <td>@item.PersianCreatedDate</td>
+                            <td>@item.Option1</td>
+                            <td>@item.Option2</td>
+                            <td>@item.Option3</td>
+                            <td>@item.Option4</td>
+                            <td>@item.AnswerNO</td>
+                            <td data-change>
+                                <div>
+                                    <button type="button" data-edit data-title="ویرایش : @item.Title"
+                                        data-url='@Url.Page("","Edit",new {id=@item.Id})' onclick="ajaxLoadPartialForm(this)">
+                                        <i class="las"></i>
+                                    </button>
+                                    <form onsubmit="return confirm('آیا از حذف @item.Title مطمئن هستید؟')"
+                                asp-page-handler="remove">
+                                        <input type="hidden" name="id" value="@item.Id">
+                                        <button type="submit" data-trash>
+                                            <i class="las"></i>
+                                        </button>
+                                    </form>
+                                    <a asp-page="Answer" asp-route-id="@item.Id"
+                                        asp-route-lovertitle="@item.Title.ToFriendlyRoute()" target="_blank" data-more>
+                                        ادامه
+                                        </a>
+                                    <a href="javascript:void(0)" data-more>
+                                        برنده ها
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr data-span>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <partial name="_Pagination" model='(Model.List.TotalPages)' />
+    </div>
+</div>
+
+@section Scripts{
+<script>
+    setModalXL();
+</script>
+}

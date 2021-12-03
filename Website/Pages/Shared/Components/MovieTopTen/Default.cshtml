@@ -1,0 +1,13 @@
+@model IEnumerable<TopTenHelperVm>
+@if (Model.Any())
+{
+    <aside id="top10">
+        @foreach (var item in Model)
+        {
+            <a asp-page="/Movie/MovieInfo" asp-route-id="@item.Id" title="@item.Value">
+                <img src="@item.FriendlyUrl" alt="رتبه چنده">
+                <span class="badge bg-danger">@item.DisplayVoteAverage</span>
+            </a>
+        }
+    </aside>
+}

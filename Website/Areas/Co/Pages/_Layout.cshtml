@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <environment include="Development,Production">
+        <link rel="stylesheet" href="~/libs/boot/boot.css" />
+        <link rel="stylesheet" href="~/libs/tagify/tagify.css" />
+        <link rel="stylesheet" href="~/libs/pikaday/pikaday.css" />
+        <link rel="stylesheet" href="~/libs/editor/summernote.css" />
+        <link rel="stylesheet" href="~/panel/styles/app.css" />
+
+        <!-- link -->
+        <link rel="stylesheet" href="~/libs/fonts/iran-yekan/iran-yekan.css" />
+        <link rel="stylesheet" href="~/libs/fonts/line-awesome/line-awesome.css" />
+    </environment>
+    <link rel="icon" type="image/png" href="~/favicon.png" />
+</head>
+
+<body>
+    <!-- page loading -->
+    <div class="ploading">
+        <div class="spinner">
+            <div class="rect1"></div>
+            <div class="rect2"></div>
+            <div class="rect3"></div>
+            <div class="rect4"></div>
+            <div class="rect5"></div>
+        </div>
+    </div>
+
+    <!-- layout modal -->
+    <div class="modal fade" id="layoutModal" aria-labelledby="layoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="layoutModalLabel"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-justify">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- create modal -->
+    <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" id="dataCreate">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav id="navbar" class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">رتبش چنده؟</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0)">
+                            <i class="las la-smile"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item profile">
+                        <div class="btn-group">
+                            <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <i class="las la-user"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a class="dropdown-item" asp-page="/User/Index">کاربران</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" asp-page="/Index" asp-page-handler="logout">
+                                        خروج
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container-fluid">
+        <section class="row">
+            <aside id="aside" class="col-2">
+                <div class="accordion" id="accordionAside">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="asideDash">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseDash" aria-expanded="false" aria-controls="collapseDash">
+                                داشبورد
+                            </button>
+                        </h2>
+                        <div id="collapseDash" class="accordion-collapse collapse" aria-labelledby="asideDash"
+                            data-bs-parent="#accordionAside">
+                            <div class="accordion-body">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <a class="nav-link" asp-page="/Index">داشبورد</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="asideBase">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseBase" aria-expanded="false" aria-controls="collapseBase">
+                                اطلاعات پایه
+                            </button>
+                        </h2>
+                        <div id="collapseBase" class="accordion-collapse collapse" aria-labelledby="asideBase"
+                            data-bs-parent="#accordionAside">
+                            <div class="accordion-body">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <a class="nav-link" asp-page="/Artist/Index">هنرمندان</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a class="nav-link" asp-page="/Tags/Index">برچسب ها</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a class="nav-link" asp-page="/CinemaRole/Index">نقش های سینما</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a class="nav-link" asp-page="/Province/Index">شهر/استان</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                                فیلم..تئاتر..سریال
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                            data-bs-parent="#accordionAside">
+                            <div class="accordion-body">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <a class="nav-link" asp-page="/Movie/Index">فیلم</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a class="nav-link" asp-page="/Movie/Serial">سریال</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a class="nav-link" asp-page="/Movie/Theater">تئاتر</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                واریته..جنگ ستارگان
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                            data-bs-parent="#accordionAside">
+                            <div class="accordion-body">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <a class="nav-link" asp-page="/VtyStar/Index">واریته/جنگ
+                                            ستارگان</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a class="nav-link" asp-page="/JustLover/Index">فقط خوره
+                                            ها</a>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <a class="nav-link" asp-page="/Comment/Index">نظرات</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="headingFour">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                اطلاعات کاربران
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                            data-bs-parent="#accordionAside">
+                            <div class="accordion-body">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item">
+                                        <a class="nav-link" asp-page="/User/Index">کاربران</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+            <div id="main-content" class="col-10">
+                @RenderBody()
+            </div>
+        </section>
+    </main>
+
+    <footer id="footer" class="container-fluid">
+        <p class="copy-right">
+            Develop by &copy; <a href="https://www.instagram.com/laxifan/">laxifan</a>
+        </p>
+    </footer>
+
+    <environment include="Development,Production">
+        <script src="~/libs/boot/popper.js"></script>
+        <script src="~/libs/boot/boot.js"></script>
+        <script src="~/libs/jquery/jquery.js"></script>
+        <script src="~/libs/notify/notify.js"></script>
+
+        <script src="~/libs/jquery/jquery-validation.js"></script>
+        <script src="~/libs/jquery/validate.unobtrusive.js"></script>
+        <script src="~/libs/jquery/unobtrusive-ajax.js"></script>
+
+        <!-- Scripts -->
+        <script src="~/panel/scripts/initScripts.js" asp-append-version="true"></script>
+        <script src="~/panel/scripts/ajxScripts.js" asp-append-version="true"></script>
+        @await RenderSectionAsync("Scripts", required: false)
+    </environment>
+</body>
+
+</html>

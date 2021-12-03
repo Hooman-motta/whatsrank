@@ -1,0 +1,110 @@
+@model RegisterInputVm
+
+<div class="modal-content">
+    <div class="modal-header">
+        <h6 class="modal-title">ثبت نام</h6>
+    </div>
+    <div class="modal-body">
+        <form method="post" asp-page="/Account/Auth" asp-page-handler="Register" data-ajax="true"
+            data-ajax-method="post" data-ajax-begin="ajaxBegin" data-ajax-complete="ajaxCmpAuth"
+            data-ajax-failure="ajaxFailure">
+            <div class="form-group">
+                <label asp-for="UserName" class="form-label"></label>
+                <input asp-for="UserName" class="form-control" />
+                <span asp-validation-for="UserName" class="text-danger"></span>
+            </div>
+
+            <div class="row my-2">
+                <div class="col">
+                    <label asp-for="Email" class="form-label"></label>
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="col">
+                    <label asp-for="PhoneNumber" class="form-label"></label>
+                    <input asp-for="PhoneNumber" class="form-control" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row my-2">
+                <div class="col">
+                    <label asp-for="Password" class="form-label"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="col">
+                    <label asp-for="ConfirmPassword" class="form-label"></label>
+                    <input asp-for="ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+            </div>
+
+            <div class="row my-2">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="expert" checked
+                        onchange="document.querySelector('.expert-user').classList.add('d-none')">
+                    <label class="form-check-label" for="expert" style="font-size: .6rem;color:#fff">
+                        <b>عادی</b>
+                        (شما به عنوان کاربر عادی میتوانید در نظرسنجی ها شرکت کنید.)
+                    </label>
+                </div>
+                <div class="form-check mt-1">
+                    <input class="form-check-input" type="radio" name="expert"
+                        onchange="document.querySelector('.expert-user').classList.remove('d-none')">
+                    <label class="form-check-label" for="expert" style="font-size: .6rem;color:#fff">
+                        <b>متخصص</b>
+                        (شما به عنوان کاربر متخصص میتوانید ضمن شرکت در نظرسنجی ها، با تکمیل پروفایل تخصصی، پس از ثبت
+                        نام، خود را به جامعه هنری در بخش بودن یا نبودن معرفی کنید)
+                    </label>
+                </div>
+            </div>
+
+            <section class="expert-user d-none">
+                <div class="form-group">
+                    <label asp-for="CinemaRoleType" class="form-label"></label>
+                    <select class="form-control" asp-for="CinemaRoleType"
+                        asp-items="Html.GetEnumSelectList<CinemaRoleType>()">
+                        <option value="">انتخاب کنید...</option>
+                    </select>
+                </div>
+
+                @* <div class="row my-2">
+                    <div class="col">
+                    <label class="form-label">استان</label>
+                    <select class="form-control" asp-items="@provinces" data-target="ProvinceId"
+                    data-url='@Url.Page("/Account/Auth", pageHandler: "Cities")' onchange="ajaxSelect(this)">
+                    <option>انتخاب کنید...</option>
+                    </select>
+                    </div>
+                    <div class="col">
+                    <label class="form-label">شهر</label>
+                    <select class="form-control" asp-for="ProvinceId">
+                    <option value="">انتخاب کنید...</option>
+                    </select>
+                    </div>
+                    </div>*@
+            </section>
+
+            <div class="form-group mt-3">
+                <button type="submit" class="btn-submit">
+                    ثبت نام
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class=" modal-footer">
+        <h6 class="switch-title">
+            حساب کاربری دارید؟
+        </h6>
+        <button class="switch-auth" data-handler="login">
+            <span>ورود</span>
+        </button>
+    </div>
+</div>
+
+<script>
+    $("form").removeData("validator");
+    $("form").removeData("unobtrusiveValidation");
+    $.validator.unobtrusive.parse("form");
+</script>

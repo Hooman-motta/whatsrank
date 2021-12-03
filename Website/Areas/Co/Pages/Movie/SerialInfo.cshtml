@@ -1,0 +1,87 @@
+﻿@page "{id}"
+@model Website.Areas.Co.Pages.Movie.SerialInfoModel;
+@{
+    ViewBag.Title = "serial info";
+    var createUrl = Url.Page("", "Create");
+}
+<partial name="_Alert" model="Model.Alert" />
+<div class="table-container">
+    <div class="table-container-header">
+        <button class="btn btn-outline-dark" onclick='ajaxLoadPartialForm(this)' data-title="افزودن قسمت ها"
+            data-url='@createUrl'>
+            افزودن
+        </button>
+    </div>
+    <div class="table-responsive" id="dataList">
+        @if (Model.List.Any())
+        {
+            foreach (var item in Model.List)
+            {
+                <table class="table table-bordered table-striped table-sm">
+                    <caption>@item.SeasonId - @item.Season - تعداد @item.Chapters.Count</caption>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>قسمت</th>
+                            <th>امتیاز</th>
+                            <th>تصویر</th>
+                            <th>عملیات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var child in item.Chapters)
+                        {
+                            var modalTitle = $"{item.Season.Replace('-', ' ')} - {child.Chapter.Replace('-', ' ')}";
+                            <tr>
+                                <td>@child.ChapterId</td>
+                                <td>@child.Chapter</td>
+                                <td>@child.Vote</td>
+                                <td data-file>
+                                    <a href="javascript:void(0)" data-title="@modalTitle"
+                            data-url="@child.FileUrl" onclick="viewModalAsFile(this)">
+                                        <i class="las"></i>
+                                    </a>
+                                </td>
+                                <td data-change>
+                                    <div>
+                                        <form onsubmit="return confirm('آیا از حذف @modalTitle مطمئن هستید؟')"
+                                asp-page-handler="remove">
+                                            <input type="hidden" name="id" value="@child.ChapterId">
+                                            <button type="submit" data-trash>
+                                                <i class="las"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        }
+        else
+        {
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>فصل</th>
+                        <th>قسمت</th>
+                        <th>امتیاز</th>
+                        <th>تصویر</th>
+                        <th>عملیات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr data-span></tr>
+                </tbody>
+            </table>
+        }
+    </div>
+</div>
+
+@section Scripts{
+<script>
+    btnTitle("serialinfo");
+</script>
+}

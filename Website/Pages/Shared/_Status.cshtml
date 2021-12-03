@@ -1,0 +1,34 @@
+@inject UserManager<AppUser> _userManager
+@inject SignInManager<AppUser> _signInManager
+
+@if (_signInManager.IsSignedIn(User))
+{
+    <div class="dropdown profile">
+        <button type="button" class="dropdown-toggle" id="dropdownProfile" data-bs-toggle="dropdown" aria-expanded="false">
+            @_userManager.GetUserName(User)
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownProfile">
+            <li class="dropdown-item">
+                <a asp-page="/Account/Index">
+                    <i class="las la-user"></i>
+                    پروفایل
+                </a>
+            </li>
+            <li class="dropdown-item">
+                <form method="post" asp-page="/Account/Index" asp-page-handler="Logout">
+                    <button type="submit" class="nav-link btn btn-link text-dark">
+                        <i class="las la-sign-out-alt"></i>
+                        خروج
+                    </button>
+                </form>
+            </li>
+        </ul>
+    </div>
+}
+else
+{
+    <button class="switch-auth" data-handler="register">
+        <span>عضویت/ورود</span>
+        <i class="las la-user-circle"></i>
+    </button>
+}

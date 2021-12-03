@@ -1,0 +1,38 @@
+@page
+@model Website.Pages.Error.OppsModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Opps</title>
+        <style>
+            body {
+                margin: 1rem 0;
+                background-color: #e3e3e39e;
+            }
+
+            h2 {
+                text-align: center;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h2>
+        @if (Model.ShowRequestId)
+        {
+                <p>
+                    <strong>Request ID:</strong> <code>@Model.RequestId</code>
+                </p>
+        }
+        </h2>
+        <h2>
+            Sorry! your request was not found. <a href="/" class="alert-link">Back to home.</a>
+        </h2>
+    </body>
+
+</html>

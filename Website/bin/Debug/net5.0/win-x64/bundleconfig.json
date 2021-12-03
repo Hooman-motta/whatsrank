@@ -1,0 +1,69 @@
+// [
+//     {
+//         "outputFileName": "wwwroot/dep/panel/css/app.css",
+//         "inputFiles": [
+//             "wwwroot/libs/bootstrap/bootstrap.css",
+//             "wwwroot/libs/tagify/tagify.css",
+//             "wwwroot/libs/pikaday/pikaday.css",
+//             "wwwroot/dep/panel/js/editor/summernote.css",
+//             "wwwroot/panel/styles/app.css"
+//         ]
+//     },
+//     {
+//         "outputFileName": "wwwroot/dep/panel/js/app.js",
+//         "inputFiles": [
+//             "wwwroot/libs/jquery/jquery.js",
+//             "wwwroot/libs/bootstrap/popper.js",
+//             "wwwroot/libs/bootstrap/bootstrap.js",
+//             "wwwroot/libs/notify/notify.js",
+//             "wwwroot/panel/scripts/confScripts.js",
+//             "wwwroot/panel/scripts/initScripts.js",
+//             "wwwroot/panel/scripts/ajxScripts.js"
+//         ]
+//     },
+//     {
+//         "outputFileName": "wwwroot/dep/panel/js/validation.js",
+//         "inputFiles": [
+//             "wwwroot/libs/jquery/validation.js",
+//             "wwwroot/libs/jquery/validate.unobtrusive.js",
+//             "wwwroot/libs/jquery/unobtrusive-ajax.js"
+//         ]
+//     },
+//     {
+//         "outputFileName": "wwwroot/dep/panel/js/tags.js",
+//         "inputFiles": [
+//             "wwwroot/libs/tagify/polyfills.js",
+//             "wwwroot/libs/tagify/tagify.js"
+//         ]
+//     },
+//     {
+//         "outputFileName": "wwwroot/dep/panel/js/date.js",
+//         "inputFiles": [
+//             "wwwroot/libs/pikaday/moment.js",
+//             "wwwroot/libs/pikaday/moment-jalali.js",
+//             "wwwroot/libs/pikaday/pikaday.js"
+//         ]
+//     },
+//     {
+//         "outputFileName": "wwwroot/dep/website/css/app.css",
+//         "inputFiles": [
+//             "wwwroot/libs/bootstrap/bootstrap.css",
+//             "wwwroot/dep/website/js/swiper/swiper.css",
+//             "wwwroot/website/styles/app.css"
+//         ]
+//     },
+//     {
+//         "outputFileName": "wwwroot/dep/website/js/app.js",
+//         "inputFiles": [
+//             "wwwroot/libs/jquery/jquery.js",
+//             "wwwroot/libs/jquery/validation.js",
+//             "wwwroot/libs/jquery/validate.unobtrusive.js",
+//             "wwwroot/libs/jquery/unobtrusive-ajax.js",
+//             "wwwroot/libs/bootstrap/popper.js",
+//             "wwwroot/libs/bootstrap/bootstrap.js",
+//             "wwwroot/libs/notify/notify.js",
+//             "wwwroot/website/scripts/initScripts.js",
+//             "wwwroot/website/scripts/ajxScripts.js"
+//         ]
+//     }
+// ]

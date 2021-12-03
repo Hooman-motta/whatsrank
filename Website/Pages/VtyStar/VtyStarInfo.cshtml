@@ -1,0 +1,109 @@
+@page "{id}"
+
+@model Website.Pages.VtyStar.VtyStarInfoModel
+@{
+    ViewBag.Title = Model.List.Title;
+    ViewBag.MetaKeywords = Model.List.KeyWord;
+}
+
+<h4 class="page-title">
+    @Model.List.Question
+</h4>
+
+<section class="page-info vtystar-info">
+    <div class="row top-page">
+        <div class="col-12 col-md-6 right">
+            <div class="right-options">
+                <img src="@Model.List.FriendlyUrl" alt="@Model.List.Title">
+                <h6 class="title">@Model.List.Title</h6>
+            </div>
+        </div>
+        <article class="col-12 col-md-6 left">
+            <div class="left-options">
+                <partial name="_Options" model="@Model.List.Options" />
+            </div>
+        </article>
+    </div>
+
+    <div class="middle-page">
+        <div class="row">
+            <div class="col-sm-12 col-md-6 px-4" style="text-align: justify;line-height: 2;">
+                @Html.Raw(WebUtility.HtmlDecode(Model.List.Source))
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <div class="h_iframe-aparat_embed_frame">
+                    <span style="display: block;padding-top: 57%"></span>
+                    <iframe src="@Model.List.VideoUrl" title="@Model.List.Title" allowFullScreen="true"
+                        webkitallowfullscreen="true" mozallowfullscreen="true">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="comment-page">
+        <div class="section-title m-0">
+            <i class="las"></i>
+            <span>نظرات</span>
+        </div>
+
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <div class="d-flex justify-content-start m-3">
+                <b class="no-auth">برای ثبت رای ابتدا وارد شوید.</b>
+            </div>
+        }
+        else
+        {
+            <form class="m-auto my-2" asp-page="/VtyStar/VtyStarInfo" asp-page-handler="SetComment" data-ajax="true"
+            data-ajax-method="post" data-ajax-begin="ajaxBegin" data-ajax-complete="ajaxCmpSetComment"
+            data-ajax-failure="ajaxFailure">
+                <div class="form-floating my-3">
+                    <textarea class="w-100" name="extract" placeholder="شرح نظر..." rows="5" cols="30"></textarea>
+                </div>
+                <button type="submit" class="btn-submit">ثبت نظر</button>
+            </form>
+        }
+        <ul class="list-group">
+            @foreach (var item in Model.List.Comments)
+            {
+                <li class="list-group-item">
+                    <div class="user-info">
+                        <b class="username">@item.DisplayName</b>
+                        <small class="date">
+                            @item.PersianCreatedDate
+                        </small>
+                    </div>
+                    <p class="extract-info">
+                        @item.Extract
+                    </p>
+                </li>
+            }
+        </ul>
+    </div>
+</section>
+
+@section Scripts{
+<script>
+</script>
+}
+
+<style>
+    .h_iframe-aparat_embed_frame {
+        position: relative;
+    }
+
+    .h_iframe-aparat_embed_frame .ratio {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    .h_iframe-aparat_embed_frame iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+</style>

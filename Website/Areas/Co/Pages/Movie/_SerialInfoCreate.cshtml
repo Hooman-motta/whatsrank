@@ -1,0 +1,47 @@
+@model SerialInfoModel.InputModel
+
+<form asp-page="" enctype="multipart/form-data">
+
+    <div class="row">
+        <div class="col-12">
+            <label asp-for="FormFile" class="col-form-label"></label>
+            <div class="col-sm-12">
+                <input asp-for="FormFile" class="form-control">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <label asp-for="SeasonId" class="col-form-label"></label>
+            <div class="col">
+                <select class="form-select" asp-for="SeasonId">
+                    <option value="">انتخاب کنید</option>
+                    @for (int i = 1; i <= 25; i++)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+            </div>
+            <span asp-validation-for="SeasonId"></span>
+        </div>
+
+        <div class="col-6">
+            <label asp-for="ChapterId" class="col-form-label"></label>
+            <div class="col">
+                <select class="form-select" asp-for="ChapterId">
+                    <option value="">انتخاب کنید</option>
+                    @for (int i = 1; i <= 50; i++)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+            </div>
+            <span asp-validation-for="ChapterId"></span>
+        </div>
+    </div>
+
+    <div class="my-2">
+        <button type="submit" class="btn btn-outline-dark">ثبت</button>
+    </div>
+</form>

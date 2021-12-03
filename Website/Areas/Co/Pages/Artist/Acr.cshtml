@@ -1,0 +1,62 @@
+﻿@page "{id}"
+@model Website.Areas.Co.Pages.Artist.AcrModel;
+@{
+    ViewBag.Title = "artist role";
+    var createUrl = Url.Page("", "Create");
+}
+
+<partial name="_Alert" model="Model.Alert" />
+
+<div class="table-container">
+    <div class="table-container-header">
+        <button class="btn btn-outline-dark" onclick='ajaxLoadPartialForm(this)' data-title="انتساب نقش"
+            data-url='@createUrl'>
+            افزودن
+        </button>
+    </div>
+    <div class="table-responsive" id="dataList">
+        <table class="table table-bordered table-striped">
+            <caption class="table-caption"></caption>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>نقش ها</th>
+                    <th>عملیات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.List.Any())
+                {
+                    foreach (var item in Model.List)
+                    {
+                        <tr>
+                            <td>@item.CinemaRoleId</td>
+                            <td>@item.RoleName</td>
+                            <td data-change>
+                                <div>
+                                    <div>
+                                        <form onsubmit="return confirm('آیا از حذف @item.RoleName مطمئن هستید؟')"
+                                    asp-page-handler="remove">
+                                            <input type="hidden" name="cinemaRoleId" value="@item.CinemaRoleId">
+                                            <button type="submit" data-trash>
+                                                <i class="las"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr data-span></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts{
+<script>
+    btnTitle("artistname");
+</script>
+}

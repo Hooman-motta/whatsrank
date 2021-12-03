@@ -1,0 +1,24 @@
+@model AmrModel.InputModel
+
+<form asp-page="">
+    <div class="row">
+        <label asp-for="ArtistId" class="col-form-label"></label>
+        <div class="col-sm-12">
+            <select class="form-select" asp-for="ArtistId" asp-items="@Model.Artists" data-target="CinemaRoleId"
+                data-url='@Url.Page("/Artist/Index","CinemaRoleAsSelect")' onchange="ajaxSelect(this)"></select>
+        </div>
+        <span asp-validation-for="ArtistId"></span>
+    </div>
+
+    <div class="row">
+        <label asp-for="CinemaRoleId" class="col-form-label"></label>
+        <div class="col-sm-12">
+            <select class="form-select" asp-for="CinemaRoleId"></select>
+        </div>
+        <span asp-validation-for="CinemaRoleId"></span>
+    </div>
+
+    <div class="my-3">
+        <button type="submit" class="btn btn-outline-dark">ثبت</button>
+    </div>
+</form>

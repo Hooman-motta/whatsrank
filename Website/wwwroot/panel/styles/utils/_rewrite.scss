@@ -1,0 +1,228 @@
+//-----------
+// --- bootstrap
+//-----------
+.modal {
+    .modal-header {
+        .modal-title {
+            font-weight: bold;
+            font-size: $web-lg-font-size;
+        }
+
+        .btn-close {
+            background-size: $web-sm-font-size - .1 !important;
+        }
+    }
+
+    &#layoutModal {
+        .modal-body {
+            img {
+                width: auto;
+                margin: auto;
+                display: block;
+                max-height: 200px;
+            }
+        }
+    }
+}
+
+.pagination {
+    flex-wrap: wrap;
+
+    .active {
+        pointer-events: none;
+    }
+
+    .page-item {
+        &:first-child {
+            .page-link {
+                border-top-left-radius: .25rem;
+                border-bottom-left-radius: .25rem;
+                border-top-right-radius: initial !important;
+                border-bottom-right-radius: initial !important;
+            }
+        }
+
+        &:last-child {
+            .page-link {
+                border-top-right-radius: .25rem;
+                border-bottom-right-radius: .25rem;
+                border-top-left-radius: initial !important;
+                border-bottom-left-radius: initial !important;
+            }
+        }
+    }
+}
+
+.alert-dismissible {
+    .btn-close {
+        font-size: $web-md-font-size;
+    }
+}
+
+.col-form-label {
+    font-size: $web-sm-font-size !important;
+}
+
+.accordion-header {
+    line-height: 1.7;
+    word-break: break-word;
+}
+
+
+//-----------
+// --- notify
+//-----------
+.notifyjs-corner {
+    z-index: 10000 !important;
+}
+
+.notifyjs-bootstrap-success,
+.notifyjs-bootstrap-error {
+    background-image: none !important;
+}
+
+//-----------
+// --- validation
+//-----------
+.validation-summary-errors {
+    margin: 1rem 0;
+
+    ul {
+        margin: 0;
+        padding: 0;
+        text-align: right;
+        list-style-type: none;
+
+        li {
+            padding: .5rem;
+            font-size: .8rem;
+            border-bottom: $web-border;
+            background-color: $web-color-3;
+
+            &:last-child {
+                border: none !important;
+            }
+        }
+    }
+}
+
+.field-validation-error {
+    color: $web-color-5;
+    font-size: $web-sm-font-size;
+}
+
+.field-validation-error:empty {
+    display: none;
+}
+
+//-----------
+// --- tags
+//-----------
+.tags-look {
+    .tagify__dropdown__item {
+        display: inline-block;
+        border-radius: 3px;
+        padding: .3em .5em;
+        border: 1px solid #CCC;
+        background: #F3F3F3;
+        margin: .2em;
+        font-size: .85em;
+        color: black;
+        transition: 0s;
+
+        &:hover {
+            background: lightyellow;
+            border-color: gold;
+        }
+    }
+
+    .tagify__dropdown__item--active {
+        color: black;
+    }
+}
+
+
+//-----------
+// --- date picker
+//-----------
+[data-picker] {
+    position: relative;
+
+    [data-date] {
+        position: relative;
+
+        input {
+            text-align: center;
+        }
+
+        [data-trigger] {
+            top: 0;
+            left: 0;
+            border: none;
+            height: 100%;
+            display: flex;
+            position: absolute;
+            align-items: center;
+            background-color: transparent;
+
+            .choose {
+                font-size: 1.5rem;
+
+                &::before {
+                    content: "\f133";
+                }
+            }
+
+            .reset {
+                font-size: 1.5rem;
+
+                &::before {
+                    content: "\f1f8";
+                }
+            }
+        }
+    }
+
+    [data-container] {
+        left: 3%;
+        width: 95%;
+        z-index: 500;
+        margin: auto;
+        position: absolute;
+    }
+}
+
+
+//-----------
+// --- editor
+//-----------
+.note-color,
+.note-para {
+    .note-dropdown-menu {
+        flex-direction: row !important;
+    }
+}
+
+.note-link-popover {
+    .note-children-container {
+        display: flex;
+        padding: 0 .5rem;
+        flex-direction: column;
+
+        span {
+            a {
+                display: none;
+            }
+        }
+    }
+}
+
+.note-style {
+    .note-dropdown-item {
+        flex-direction: column !important;
+
+        * {
+            font-size: 1rem;
+        }
+    }
+}

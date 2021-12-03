@@ -1,0 +1,17 @@
+E:\Website\whatsrank\DbLayer\bin\Debug\net5.0\DbLayer.deps.json
+E:\Website\whatsrank\DbLayer\bin\Debug\net5.0\DbLayer.dll
+E:\Website\whatsrank\DbLayer\bin\Debug\net5.0\ref\DbLayer.dll
+E:\Website\whatsrank\DbLayer\bin\Debug\net5.0\DbLayer.pdb
+E:\Website\whatsrank\DbLayer\bin\Debug\net5.0\CldLayer.dll
+E:\Website\whatsrank\DbLayer\bin\Debug\net5.0\HpLayer.dll
+E:\Website\whatsrank\DbLayer\bin\Debug\net5.0\CldLayer.pdb
+E:\Website\whatsrank\DbLayer\bin\Debug\net5.0\HpLayer.pdb
+E:\Website\whatsrank\DbLayer\obj\Debug\net5.0\DbLayer.csproj.AssemblyReference.cache
+E:\Website\whatsrank\DbLayer\obj\Debug\net5.0\DbLayer.GeneratedMSBuildEditorConfig.editorconfig
+E:\Website\whatsrank\DbLayer\obj\Debug\net5.0\DbLayer.AssemblyInfoInputs.cache
+E:\Website\whatsrank\DbLayer\obj\Debug\net5.0\DbLayer.AssemblyInfo.cs
+E:\Website\whatsrank\DbLayer\obj\Debug\net5.0\DbLayer.csproj.CoreCompileInputs.cache
+E:\Website\whatsrank\DbLayer\obj\Debug\net5.0\DbLayer.dll
+E:\Website\whatsrank\DbLayer\obj\Debug\net5.0\ref\DbLayer.dll
+E:\Website\whatsrank\DbLayer\obj\Debug\net5.0\DbLayer.pdb
+E:\Website\whatsrank\DbLayer\obj\Debug\net5.0\DbLayer.csproj.CopyComplete

@@ -1,0 +1,44 @@
+@model VoteSelectVm
+
+<div class="select-vote" data-item='@($"{Model.UqId}-{Model.ItemId}")'>
+    <button type="button" class="dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside"
+        aria-expanded="false">
+        @if (Model.MarkValue.HasValue)
+        {
+            <b class="text">تغییر رای</b>
+        }
+        else
+        {
+            <b class="text">ثبت رای</b>
+        }
+        <span class="mark-value">
+            <i class="lar la-star"></i>
+            <b class="your-vote">@Model.MarkValue</b>
+        </span>
+    </button>
+    <ul class="dropdown-menu">
+        @for (int i = 0; i <= ConstValues.MAX_VOTE; i++)
+        {
+            <li data-value="@i" onclick="voteSelect(this)" class='dropdown-item @(i <= Model.MarkValue ? "voted" : null)'>
+                <i class="las la-star"></i>
+                <span class="vote-number">@i</span>
+            </li>
+        }
+        <li class="dropdown-item form">
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <b class="no-auth">برای ثبت رای ابتدا وارد شوید.</b>
+            }
+            else
+            {
+                <form class="m-auto" asp-page="@Model.PageUrl" asp-route-id="@Model.RouteId"
+                asp-page-handler="@Model.HandlerUrl" data-ajax="true" data-ajax-method="post"
+                data-ajax-begin="ajaxBegin" data-ajax-complete="ajaxCmpVoteSelect" data-ajax-failure="ajaxFailure">
+                    <input type="hidden" name="itemId" value="@Model.ItemId">
+                    <input type="hidden" name="markValue" value="@Model.MarkValue">
+                    <button type="submit" class="btn-submit">ثبت رای</button>
+                </form>
+            }
+        </li>
+    </ul>
+</div>

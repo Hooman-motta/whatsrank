@@ -1,0 +1,58 @@
+.modal {
+
+    .modal-dialog {
+        .modal-content {
+            background-color: $bgc-type-2;
+        }
+    }
+
+    .modal-header {
+        border-bottom: $b-type-0;
+
+        .modal-title {
+            font-weight: bold;
+            font-size: $fs-small;
+        }
+
+        .btn-close {
+            background-size: $fs-small
+        }
+    }
+
+    &#voteModal {
+        .modal-body {
+            display: flex;
+            flex-direction: column;
+
+            .options {
+                padding: 0;
+                display: flex;
+                flex-direction: row;
+                direction: ltr;
+                justify-content: space-around;
+
+                li {
+                    display: flex;
+                    line-height: 2;
+                    text-align: center;
+                    padding: .5rem .8rem 0;
+                    flex-direction: column;
+
+                    &.voted,
+                    &:hover {
+                        cursor: pointer;
+
+                        i,
+                        .vote-number {
+                            color: $tc-yellow !important;
+                        }
+                    }
+                }
+            }
+
+            @include btn-submit {
+                margin: auto;
+            }
+        }
+    }
+}

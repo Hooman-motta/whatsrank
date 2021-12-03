@@ -1,0 +1,76 @@
+@page
+@model Website.Pages.Artist.IndexModel
+@{
+    var pageTitle = "10 تای اول";
+    ViewBag.Title = pageTitle;
+}
+<h4 class="page-title">
+    @pageTitle
+</h4>
+
+<p class="page-describe">
+    10 هنرمند برتر، انتخاب شده توسط کاربران
+    در تخصص‌های مختلف.
+</p>
+
+@if (Model.List.Any())
+{
+    @foreach (var item in Model.List)
+    {
+        int number = 1;
+        string bgColor = "";
+        int rndNum = new Random().Next(0, 3);
+        switch (rndNum)
+        {
+            case 1:
+                bgColor = "red";
+                break;
+            case 2:
+                bgColor = "#0068c5";
+                break;
+            default:
+                bgColor = "yellow";
+                break;
+        }
+        <div class="section-title m-0">
+            <i class="las"></i>
+            <span>@item.Title</span>
+        </div>
+        <div class="artist">
+            @foreach (var child in item.TopTenList)
+            {
+                <div class="box">
+                    <div class="top-box">
+                        <img src="@child.FriendlyUrl" alt="@child.FullName">
+                    </div>
+                    <div class="bottom-box">
+                        <div class="vote">
+                            <small class="avg">
+                                <i class="las la-star"></i>
+                                <b>@child.DisplayVoteAverage</b>
+                            </small>
+                        </div>
+                        <a class="more" asp-page="/Artist/ArtistInfo" asp-route-id="@child.ArtistId"
+                asp-route-title="child.FullName.ToFriendlyRoute()">
+                            <b class="name">@child.FullName</b>
+                        </a>
+                        <div class="rank" style="background-color: @bgColor;">
+                            @number
+                        </div>
+                    </div>
+                </div>
+                {
+                    number++;
+                }
+            }
+        </div>
+    }
+    @* <partial name="_Pagination" model='(Model.TotalPages)' /> *@
+    <!-- <partial name="_Pagination" model='(Model.ViewResult.PagesCount,"/Artist/Index")' /> -->
+}
+else
+{
+    <h6 class="no-data">
+        اطلاعاتی وجود ندارد.
+    </h6>
+}

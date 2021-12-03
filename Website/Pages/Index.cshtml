@@ -1,0 +1,164 @@
+@page
+@model Website.Pages.IndexModel
+@{
+    ViewBag.Title = "خانه";
+}
+
+<h4 class="page-title">
+    بهترین‌های سینما، سریال و تئاتر از دید شما
+</h4>
+
+<div class="row home-top">
+    <div class="col-11 col-md-4">
+        <div class="box">
+            <div class="box-right">
+                <h6 class="title">
+                    <a asp-page="/Movie/Index" asp-route-title="فیلم">
+                        فیلم
+                    </a>
+                </h6>
+                <p class="describe">
+                    در این بخش میتونیدبه فیلم‌ها و عوامل تولیدشون امتیاز بدید.
+                </p>
+                <i class="las la-chevron-circle-left"></i>
+            </div>
+            <div class="box-left">
+                @if (Model.Film != null)
+                {
+                    <a asp-page="/Movie/MovieInfo" asp-route-id="@Model.Film.Id"
+                    asp-route-title="@Model.Film.Title.ToFriendlyRoute()">
+                        <img src="@Model.Film.FriendlyUrl" alt="@Model.Film.Title">
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-11 col-md-4">
+        <div class="box">
+            <div class="box-right">
+                <h6 class="title">
+                    <a asp-page="/Movie/Serial" asp-route-title="سریال">
+                        سریال
+                    </a>
+                </h6>
+                <p class="describe">
+                    در این بخش میتونیدبه سریال‌ها و عوامل تولیدشون امتیاز بدید.
+                </p>
+                <i class="las la-chevron-circle-left"></i>
+            </div>
+
+            <div class="box-left">
+                @if (Model.Serial != null)
+                {
+                    <a asp-page="/Movie/MovieInfo" asp-route-id="@Model.Serial.Id"
+                    asp-route-title="@Model.Serial.Title.ToFriendlyRoute()">
+                        <img src="@Model.Serial.FriendlyUrl" alt="@Model.Serial.Title">
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+
+    <div class="col-11 col-md-4">
+        <div class="box">
+            <div class="box-right">
+                <h6 class="title">
+                    <a asp-page="/Movie/Theater" asp-route-title="تئاتر">
+                        تئاتر
+                    </a>
+                </h6>
+                <p class="describe">
+                    در این بخش میتونیدبه تئاترها و عوامل تولیدشون امتیاز بدید.
+                </p>
+                <i class="las la-chevron-circle-left"></i>
+            </div>
+
+            <div class="box-left">
+                @if (Model.Theater != null)
+                {
+                    <a asp-page="/Movie/MovieInfo" asp-route-id="@Model.Theater.Id"
+                    asp-route-title="@Model.Theater.Title.ToFriendlyRoute()">
+                        <img src="@Model.Theater.FriendlyUrl" alt="@Model.Theater.Title">
+                    </a>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row home-bottom">
+    <div class="col-11 col-md-3">
+        <div class="box">
+            <img src="@Model.Vty?.FriendlyUrl" alt="واریته">
+            <a asp-page="/VtyStar/Index" asp-route-title="واریته" class="landing-link">
+                <h6 class="title">واریته</h6>
+            </a>
+            @if (Model.Vty?.Id != 0)
+            {
+                <a asp-page="/VtyStar/VtyStarInfo" asp-route-id="@Model.Vty?.Id"
+                asp-route-title="@Model.Vty?.Title.ToFriendlyRoute()" class="info-link">
+                    <h6 class="title">@Model.Vty?.Title</h6>
+                </a>
+            }
+            else
+            {
+                <span class="info-link"></span>
+            }
+        </div>
+    </div>
+
+    <div class="col-11 col-md-3">
+        <div class="box">
+            <img src="@Model.StarWar?.FriendlyUrl" alt="جنگ ستارگان">
+            <a asp-page="/VtyStar/StarsWar" asp-route-title="جنگ-ستارگان" class="landing-link">
+                <h6 class="title">جنگ ستارگان</h6>
+            </a>
+            @if (Model.StarWar?.Id != 0)
+            {
+                <a asp-page="/VtyStar/VtyStarInfo" asp-route-id="@Model.StarWar?.Id"
+                asp-route-title="@Model.StarWar?.Title.ToFriendlyRoute()" class="info-link">
+                    <h6 class="title">@Model.StarWar?.Title</h6>
+                </a>
+            }
+            else
+            {
+                <span class="info-link"></span>
+            }
+        </div>
+    </div>
+
+    <div class="col-11 col-md-3">
+        <div class="box">
+            <img src="@Model.JustLover?.FriendlyUrl" alt="فقط خوره ها">
+            <a asp-page="/JustLover/Index" asp-route-title="فقط-خوره-ها" class="landing-link">
+                <h6 class="title">فقط خوره ها</h6>
+            </a>
+            @if (Model.JustLover?.Id != 0)
+            {
+                <a asp-page="/JustLover/JustLoverInfo" asp-route-id="@Model.JustLover?.Id"
+                asp-route-title="@Model.JustLover?.Title.ToFriendlyRoute()" class="info-link">
+                    <h6 class="title">@Model.JustLover?.Title</h6>
+                </a>
+            }
+            else
+            {
+                <span class="info-link"></span>
+            }
+        </div>
+    </div>
+
+    <div class="col-11 col-md-3">
+        <div class="box">
+            <img src="~/website/images/beornot.jpg" alt="بودن یا نبودن">
+            <a asp-page="/User/Index" asp-route-title="بودن-یا-نبودن" class="landing-link">
+                <h6 class="title">بودن یا نبودن</h6>
+            </a>
+            <span class="info-link">
+                <h6 class="title">در این بخش هنرمندان میتوانند به معرفی خود و سوابق‌شان بپردازند.</h6>
+            </span>
+        </div>
+    </div>
+</div>
+
+<vc:artist-top-ten></vc:artist-top-ten>

@@ -1,0 +1,50 @@
+@model List<OptionsHelperVm>
+
+<form asp-page="/VtyStar/VtyStarInfo" asp-page-handler="SetVote" data-ajax="true" data-ajax-method="post"
+    data-ajax-begin="ajaxBegin" data-ajax-complete="ajaxCmpVoteOption" data-ajax-failure="ajaxFailure">
+    <ul class="list-group list-group-flush">
+        @foreach (var item in Model)
+        {
+            var p = $"optionId{item.OptionId}";
+            <li class="list-group-item" data-option="@item.OptionId" data-selected="@item.IsSelected">
+                <div class="form-check form-check-inline">
+                    @if (item.IsSelected)
+                    {
+                        <input type="radio" value="@item.OptionId" name="optionId" id="@p" class="form-check-input" checked>
+                    }
+                    else
+                    {
+                        <input type="radio" value="@item.OptionId" name="optionId" id="@p" class="form-check-input">
+                    }
+                    <label class="form-check-label" for="@p">@item.Option</label>
+                </div>
+                <div class="vote">
+                    <span class="vote-count">
+                        @item.VoteCount
+                    </span>
+                    <span class="vote-star">
+                        رای
+                        <i class="las la-star"></i>
+                    </span>
+                </div>
+            </li>
+        }
+    </ul>
+    @if (!User.Identity.IsAuthenticated)
+    {
+        <div class="d-flex justify-content-start m-3">
+            <b class="no-auth">برای ثبت رای ابتدا وارد شوید.</b>
+        </div>
+    }
+    else
+    {
+        @if (Model.Any(x => x.IsSelected))
+        {
+            <button type="submit" class="btn-submit">تغییر رای شما</button>
+        }
+        else
+        {
+            <button type="submit" class="btn-submit">ثبت رای</button>
+        }
+    }
+</form>

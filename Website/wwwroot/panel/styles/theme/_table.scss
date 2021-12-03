@@ -1,0 +1,145 @@
+.table-container {
+    .table-container-header {
+        display: flex;
+        margin: .8rem 0;
+
+        form {
+            display: flex;
+            margin: 0 .5rem;
+            justify-content: flex-start;
+
+            button[type=submit] {
+                margin-right: .2rem;
+            }
+        }
+    }
+
+    table {
+        .table-caption {
+            caption-side: top;
+            text-align: right;
+            padding-bottom: 0;
+            font-size: $web-sm-font-size;
+        }
+
+        tr {
+            font-size: $web-sm-font-size;
+
+            td,
+            th {
+                text-align: center;
+                vertical-align: middle;
+
+                &[data-file] {
+                    i {
+                        font-size: 1.8rem;
+                        color: $web-color-2;
+
+                        &::before {
+                            content: "\f15b";
+                        }
+                    }
+                }
+
+                &[data-text] {
+                    i {
+                        font-size: 1.5rem;
+                        color: $web-color-2;
+
+                        &::before {
+                            content: "\f086";
+                        }
+                    }
+                }
+
+                &[data-link] {
+                    a {
+                        i {
+                            font-size: 1.6rem;
+                            color: $web-color-2;
+
+                            &::before {
+                                content: "\f0c1";
+                            }
+                        }
+                    }
+                }
+
+                &[data-info] {
+                    i {
+                        font-size: 1.6rem;
+                        color: $web-color-2;
+
+                        &::before {
+                            content: "\f05a";
+
+                        }
+                    }
+                }
+
+                &[data-change] {
+                    &>div {
+                        display: flex;
+                        justify-content: space-around;
+                    }
+
+                    a[data-more] {
+                        color: #fff;
+                        padding: .2rem .8rem;
+                        border-radius: .2rem;
+                        background-color: $web-color-1;
+
+                        i {
+                            font-size: 1.6rem;
+                            color: $web-color-2;
+
+                            &::before {
+                                content: "\f360";
+                            }
+                        }
+
+                        &:hover {
+                            color: $web-color-3;
+                        }
+                    }
+
+                    form {
+                        margin: 0 .5rem;
+
+                        button {
+                            border: 0;
+                            padding: 0;
+                            background-color: transparent;
+
+                            &[data-trash] {
+                                i {
+                                    font-size: 1.6rem;
+                                    color: $web-color-5;
+
+                                    &::before {
+                                        content: "\f2ed";
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    button[data-edit] {
+                        border: 0;
+                        padding: 0;
+                        background-color: transparent;
+
+                        i {
+                            font-size: 1.6rem;
+                            color: $web-color-2;
+
+                            &::before {
+                                content: "\f044";
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

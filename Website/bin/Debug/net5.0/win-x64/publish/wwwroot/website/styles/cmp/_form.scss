@@ -1,0 +1,52 @@
+// form
+$form-bg-color:#343442;
+
+select {
+    padding: .8rem !important;
+    text-align-last: center;
+}
+
+textarea {
+    resize: none !important;
+}
+
+input,
+button,
+select,
+textarea {
+    @include hover-focus-active-visited {
+        outline: none !important;
+        box-shadow: none !important;
+    }
+}
+
+input,
+select,
+textarea {
+    border: none !important;
+    color: $tc-white !important;
+    padding: .6rem .8rem !important;
+    font-size: $fs-small !important;
+    background-color: $form-bg-color !important;
+
+    &::placeholder {
+        color: $tc-white !important;
+    }
+}
+
+input[type=radio],
+input[type=checkbox] {
+    padding: 0 !important;
+}
+
+.form-label,
+.form-check-label {
+    margin: .2rem .3rem;
+    color: $tc-white !important;
+    font-size: $fs-small - .1 !important;
+}
+
+.field-validation-error {
+    color: $tc-yellow !important;
+    font-size: $fs-small - .1 !important;
+}

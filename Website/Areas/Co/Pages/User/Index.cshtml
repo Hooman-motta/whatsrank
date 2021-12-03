@@ -1,0 +1,55 @@
+﻿@page
+@model Website.Areas.Co.Pages.User.IndexModel;
+@{
+    ViewBag.Title = "user";
+}
+<div class="table-container">
+    <div class="table-container-header">
+        <form method="GET">
+            <input type="text" name="filter" class="form-control">
+            <input type="hidden" value="1" name="p" class="form-control">
+            <button type="submit" class="btn btn-outline-dark">
+                جستجو...
+            </button>
+        </form>
+    </div>
+    <div class="table-responsive" id="dataList">
+        <table class="table table-bordered table-striped">
+            <caption class="table-caption"></caption>
+            <thead>
+                <tr>
+                    <th>کاربر</th>
+                    <th>عضویت</th>
+                    <th>عملیات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.List.Any())
+                {
+                    foreach (var item in Model.List)
+                    {
+                        <tr>
+                            <td>@item.DisplayName</td>
+                            <td>@item.EnrollmentDate</td>
+                            <td data-change>
+                                <div>
+                                    <a asp-page="Resume" asp-route-id="@item.Id" asp-route-user="@item.DisplayName"
+                                target="_blank" data-more>
+                                        رزومه
+                                    </a>
+                                    <a asp-page="/User/UserInfo" asp-route-id="@item.Id" data-more
+                                asp-route-user="@item.DisplayName" target="_blank">صفحه کاربری</a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr data-span></tr>
+                }
+            </tbody>
+        </table>
+        <partial name="_Pagination" model='(Model.List.TotalPages)' />
+    </div>
+</div>

@@ -1,0 +1,74 @@
+@model IndexModel.InputModel
+<form asp-page="" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-4">
+            <label asp-for="FormFile" class="col-form-label"></label>
+            <div class="col-sm-12">
+                <input asp-for="FormFile" class="form-control">
+            </div>
+            <span asp-validation-for="FormFile"></span>
+        </div>
+        <div class="col-8">
+            <label asp-for="Title" class="col-form-label"></label>
+            <div class="col">
+                <input asp-for="Title" class="form-control">
+            </div>
+            <span asp-validation-for="Title"></span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-4">
+            <label asp-for="AnswerNO" class="col-form-label"></label>
+            <div class="col-sm-12">
+                <input asp-for="AnswerNO" class="form-control">
+            </div>
+            <span asp-validation-for="AnswerNO"></span>
+        </div>
+        <div class="col-8">
+            <label asp-for="Question" class="col-form-label"></label>
+            <div class="col">
+                <input asp-for="Question" class="form-control">
+            </div>
+            <span asp-validation-for="Question"></span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <label asp-for="Option1" class="col-form-label"></label>
+            <div class="col-sm-12">
+                <input asp-for="Option1" class="form-control">
+            </div>
+            <span asp-validation-for="Option1"></span>
+        </div>
+        <div class="col-6">
+            <label asp-for="Option2" class="col-form-label"></label>
+            <div class="col">
+                <input asp-for="Option2" class="form-control">
+            </div>
+            <span asp-validation-for="Option2"></span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <label asp-for="Option3" class="col-form-label"></label>
+            <div class="col-sm-12">
+                <input asp-for="Option3" class="form-control">
+            </div>
+            <span asp-validation-for="Option3"></span>
+        </div>
+        <div class="col-6">
+            <label asp-for="Option4" class="col-form-label"></label>
+            <div class="col">
+                <input asp-for="Option4" class="form-control">
+            </div>
+            <span asp-validation-for="Option4"></span>
+        </div>
+    </div>
+
+    <div class="my-2">
+        <button type="submit" class="btn btn-outline-dark">ثبت</button>
+    </div>
+</form>

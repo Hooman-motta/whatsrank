@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+    <environment include="Development,Production">
+        <link rel="stylesheet" href="~/libs/boot/boot.css" />
+        <link rel="stylesheet" href="~/libs/swiper/swiper.css" />
+        <link rel="stylesheet" href="~/website/styles/app.css" />
+
+        <!-- link -->
+        <link rel="stylesheet" href="~/libs/fonts/iran-yekan/iran-yekan.css" />
+        <link rel="stylesheet" href="~/libs/fonts/line-awesome/line-awesome.css" />
+    </environment>
+    @if (ViewBag.MetaKeywords != null)
+    {
+        <meta name="keywords" content="@ViewBag.MetaKeywords" />
+    }
+    <link rel="icon" type="image/png" href="~/favicon.png" />
+</head>
+
+<body>
+    <!-- page loading -->
+    <div class="ploading">
+        <img src="~/website/images/loading.gif" alt="رتبه جنده؟">
+    </div>
+
+    <div class="modal fade" tabindex="-1" id="authModal" tabindex="-1" aria-labelledby="authModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable"></div>
+    </div>
+
+    <!-- menu -->
+    <nav id="menu">
+        <div class="top-menu">
+            <a href="javascript:void(0)" onclick="toggleMenu()">
+                <i class="las la-times"></i>
+            </a>
+        </div>
+        <div class="bottom-menu">
+            <a asp-page="/Movie/Index" asp-route-title="فیلم">
+                <i class="las la-angle-left"></i>
+                فیلم</a>
+            <a asp-page="/Movie/Serial" asp-route-title="سریال">
+                <i class="las la-angle-left"></i>
+                سریال</a>
+            <a asp-page="/Movie/Theater" asp-route-title="تئاتر">
+                <i class="las la-angle-left"></i>
+                تئاتر</a>
+            <a asp-page="/VtyStar/Index" asp-route-title="واریته">
+                <i class="las la-angle-left"></i>
+                واریته</a>
+            <a asp-page="/VtyStar/StarsWar" asp-route-title="جنگ-ستارگان">
+                <i class="las la-angle-left"></i>
+                جنگ ستارگان</a>
+            <a asp-page="/JustLover/Index" asp-route-title="فقط-خوره-ها">
+                <i class="las la-angle-left"></i>
+                فقط خوره ها</a>
+            <a asp-page="/User/Index" asp-route-title="بودن-یا-نبودن">
+                <i class="las la-angle-left"></i>
+                بودن یا نبودن</a>
+        </div>
+    </nav>
+
+    <!-- header -->
+    <header class="container" id="header">
+        <div class="right-header">
+            <a href="/">
+                <img src="~/website/images/logo.svg" alt="رتبه جنده؟">
+            </a>
+        </div>
+        <div class="left-header">
+            <partial name="_Status" />
+            <div class="bars">
+                <button onclick="toggleMenu()">
+                    <i class="las la-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+
+    <main class="container main">
+        @RenderBody()
+    </main>
+
+    <!-- footer -->
+    <footer class="container" id="footer">
+        <div class="social-media">
+            <a href="https://www.facebook.com/rotbeh.art" target="_blank"><i class="lab la-facebook-f"></i></a>
+            <a href="whatsapp://send?phone=+989127030154" target="_blank"><i class="lab la-whatsapp"></i></a>
+            <a href="https://t.me/rotbeh_art" target="_blank"><i class="lab la-telegram"></i></a>
+            <a href="https://www.aparat.com/rotbeh.art" target="_blank"><i class="las la-video"></i></a>
+            <a href="https://twitter.com/RotbehArt" target="_blank"><i class="lab la-twitter"></i></a>
+            <a href="https://www.instagram.com/rotbeh.art" target="_blank"> <i class="lab la-instagram"></i></a>
+        </div>
+        <div class="company-info">
+            <p>Copyright &#169; @DateTime.Now.Year</p>
+        </div>
+    </footer>
+
+    <environment include="Development,Production">
+        <script src="~/libs/boot/popper.js"></script>
+        <script src="~/libs/boot/boot.js"></script>
+        <script src="~/libs/jquery/jquery.js"></script>
+        <script src="~/libs/notify/notify.js"></script>
+        <script src="~/libs/jquery/jquery-validation.js"></script>
+        <script src="~/libs/jquery/validate.unobtrusive.js"></script>
+        <script src="~/libs/jquery/unobtrusive-ajax.js"></script>
+
+        <!-- Scripts -->
+        <script src="~/website/scripts/initScripts.js" asp-append-version="true"></script>
+        <script src="~/website/scripts/ajxScripts.js" asp-append-version="true"></script>
+        @await RenderSectionAsync("Scripts", required: false)
+    </environment>
+</body>
+
+</html>

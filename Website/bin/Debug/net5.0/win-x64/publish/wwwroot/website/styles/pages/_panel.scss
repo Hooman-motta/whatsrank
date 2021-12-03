@@ -1,0 +1,114 @@
+$box-radius:10px;
+
+@mixin right {
+    .right {
+        padding: 0;
+        background-color: $bgc-type-2;
+
+        .list-group {
+            .list-group-item {
+                width: 100%;
+                line-height: 2;
+                background-color: transparent;
+                border-bottom: $b-type-0 !important;
+
+                &:first-child {
+                    display: flex;
+                    align-items: center;
+                    flex-direction: column;
+
+                    img {
+                        width: 150px;
+                        height: 150px;
+                        border-radius: 50%;
+                    }
+
+                    .title {
+                        font-size: 1rem;
+                        margin-top: .5rem;
+                        color: $tc-white;
+                    }
+                }
+
+                &:last-child {
+                    border: none !important;
+
+                    form {
+                        padding: .5rem;
+
+                        @include btn-submit {
+                            width: 100%;
+                            display: block;
+                            margin: 1rem auto .2rem;
+                        }
+                    }
+                }
+
+                .title,
+                i {
+                    color: $tc-gray;
+                    font-size: $fs-small - .1;
+                }
+
+                i {
+                    font-size: $fs-medium;
+                }
+
+                &:not(:first-child):hover {
+                    cursor: pointer;
+
+                    .title,
+                    i {
+                        color: $tc-yellow !important;
+                    }
+                }
+
+                &.selected {
+                    &:hover {
+                        cursor: default;
+                    }
+
+                    .title,
+                    i {
+                        color: $tc-yellow !important;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@mixin left {
+    .left {
+        padding: 1rem 1.5rem;
+        background-color: $bgc-type-2;
+
+        .row {
+            justify-content: space-between;
+        }
+
+        form {
+            @include btn-submit {
+                min-width: 80px;
+            }
+        }
+
+        @content;
+    }
+}
+
+.user-panel {
+    margin-top: 1.5rem;
+    justify-content: space-between;
+    @include right;
+
+    @include left {
+        &.cinema-role {
+            form {
+                display: flex;
+                margin: .5rem 0;
+                flex-direction: column;
+            }
+        }
+    }
+}

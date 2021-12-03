@@ -1,0 +1,13 @@
+@model CityModel.InputModel
+<form asp-page="">
+    <div class="row">
+        <label asp-for="Title" class="col-form-label"></label>
+        <div class="col-sm-12">
+            <input asp-for="Title" class="form-control">
+        </div>
+        <span asp-validation-for="Title"></span>
+    </div>
+    <div class="my-2">
+        <button type="submit" class="btn btn-outline-dark">ثبت</button>
+    </div>
+</form>

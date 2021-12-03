@@ -1,0 +1,23 @@
+// footer
+#footer {
+    display: flex;
+    padding: .5rem;
+    margin-top: 2rem;
+    border-top: $b-type-1;
+    justify-content: space-between;
+
+    .social-media {
+        a {
+            font-size: $fs-medium;
+        }
+    }
+
+    .company-info {
+        color: $hc-gray;
+
+        p {
+            font-size: $fs-small;
+            font-family: "Times New Roman" !important;
+        }
+    }
+}

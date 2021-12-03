@@ -1,0 +1,154 @@
+.login-page {
+    .login-main {
+        .login-items {
+            background-color: #676777;
+
+            .login-header {
+                border-bottom: none;
+                display: flex;
+                justify-content: center;
+
+                h5 {
+                    font-size: 20px;
+                    color: white;
+                    font-family: $font-family-bold;
+                }
+            }
+
+            #login-form {
+                .login-user {
+                    display: flex;
+                    justify-content: center;
+
+                    .login-user-details {
+                        display: flex;
+                        justify-content: center;
+                        flex-direction: column;
+
+                        .user-name {
+                            font-family: $font-family-bold;
+                            color: #cad1da;
+                        }
+
+                        .username-input {
+                            background-color: #888894;
+                            padding: 10px;
+                            border: none;
+                            border-radius: 10px;
+                        }
+                    }
+                }
+
+                .password-user {
+                    display: flex;
+                    justify-content: center;
+
+                    .password-user-details {
+                        display: flex;
+                        justify-content: center;
+                        flex-direction: column;
+
+                        .pass-name {
+                            font-family: $font-family-bold;
+                            color: #cad1da;
+                        }
+
+                        .pass-input {
+                            background-color: #888894;
+                            padding: 10px;
+                            border: none;
+                            border-radius: 10px;
+                            position: relative;
+                        }
+
+                        i {
+                            color: $web-color-1;
+                            font-size: 25px;
+                            position: absolute;
+                            left: 22%;
+                            bottom: 52%;
+                        }
+                    }
+                }
+
+                .password-user2 {
+                    display: flex;
+                    justify-content: center;
+
+                    .password-user-details2 {
+                        display: flex;
+                        justify-content: center;
+                        flex-direction: column;
+
+                        .pass-name2 {
+                            font-family: $font-family-bold;
+                            color: #cad1da;
+                        }
+
+                        .pass-input2 {
+                            background-color: #888894;
+                            padding: 10px;
+                            border: none;
+                            border-radius: 10px;
+                            position: relative;
+                        }
+
+                        i {
+                            color: $web-color-1;
+                            font-size: 25px;
+                            position: absolute;
+                            left: 22%;
+                            bottom: 67%;
+                        }
+                    }
+                }
+            }
+
+            .remember-tag {
+                display: flex;
+                justify-content: center;
+                align-items: baseline;
+
+                .remember-me {
+                    label {
+                        color: $web-color-1;
+                        font-family: $font-family-bold;
+                        font-size: $sm_font_size;
+                    }
+                }
+
+                a {
+                    color: $web-color-1;
+                    font-family: $font-family-bold;
+                    font-size: $sm_font_size;
+                }
+            }
+
+            .login-btn {
+                display: flex;
+                justify-content: center;
+
+                .login-key {
+                    color: black;
+                    font-family: $font-family-bold;
+                }
+            }
+
+            .login-footer {
+                display: flex;
+                justify-content: center;
+                flex-direction: column;
+                border-top: none;
+
+                label {
+                    font-size: $sm_font_size;
+                    color: $web-color-1;
+                }
+
+                a {
+                    font-size: $sm_font_size;
+                }
+            }
+        }
+    }
+}

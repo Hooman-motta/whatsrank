@@ -1,0 +1,38 @@
+﻿@page "{id}"
+@model Website.Areas.Co.Pages.JustLover.AnswerModel;
+@{
+    ViewBag.Title = "just lover answer";
+}
+<div class="table-container">
+    <div class="table-responsive" id="dataList">
+        <table class="table table-bordered table-striped">
+            <caption class="table-caption"></caption>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>کاربر</th>
+                    <th>تاریخ</th>
+                    <th>گزینه</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.List.Any())
+                {
+                    foreach (var item in Model.List)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Username</td>
+                            <td>@item.PersianCreatedDate</td>
+                            <td>@item.AnswerNO</td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr data-span></tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

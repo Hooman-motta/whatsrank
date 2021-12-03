@@ -1,0 +1,14 @@
+@model OptionModel.InputModel
+<form asp-page="">
+    <div class="row">
+        <label asp-for="Option" class="col-form-label"></label>
+        <div class="col-sm-12">
+            <input asp-for="Option" class="form-control">
+        </div>
+        <span asp-validation-for="Option"></span>
+    </div>
+
+    <div class="my-2">
+        <button type="submit" class="btn btn-outline-dark">ثبت</button>
+    </div>
+</form>

@@ -1,0 +1,8 @@
+@model string
+
+@if (!string.IsNullOrEmpty(Model))
+{
+    <div class="my-alert">
+        @Html.Raw(Model)
+    </div>
+}

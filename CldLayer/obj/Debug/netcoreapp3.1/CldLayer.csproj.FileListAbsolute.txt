@@ -1,0 +1,10 @@
+E:\Website\whatsrank\CldLayer\bin\Debug\netcoreapp3.1\CldLayer.deps.json
+E:\Website\whatsrank\CldLayer\bin\Debug\netcoreapp3.1\CldLayer.dll
+E:\Website\whatsrank\CldLayer\bin\Debug\netcoreapp3.1\CldLayer.pdb
+E:\Website\whatsrank\CldLayer\obj\Debug\netcoreapp3.1\CldLayer.csproj.AssemblyReference.cache
+E:\Website\whatsrank\CldLayer\obj\Debug\netcoreapp3.1\CldLayer.GeneratedMSBuildEditorConfig.editorconfig
+E:\Website\whatsrank\CldLayer\obj\Debug\netcoreapp3.1\CldLayer.AssemblyInfoInputs.cache
+E:\Website\whatsrank\CldLayer\obj\Debug\netcoreapp3.1\CldLayer.AssemblyInfo.cs
+E:\Website\whatsrank\CldLayer\obj\Debug\netcoreapp3.1\CldLayer.csproj.CoreCompileInputs.cache
+E:\Website\whatsrank\CldLayer\obj\Debug\netcoreapp3.1\CldLayer.dll
+E:\Website\whatsrank\CldLayer\obj\Debug\netcoreapp3.1\CldLayer.pdb

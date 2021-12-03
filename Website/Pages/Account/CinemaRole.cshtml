@@ -1,0 +1,66 @@
+@page
+@model Website.Pages.Account.CinemaRoleModel
+@{
+    ViewBag.Title = "cinema role";
+}
+
+<div class="row user-panel cinema-role">
+    <partial name="_Aside" />
+    <div class="col-12 col-md-9 left">
+        @if (!string.IsNullOrEmpty(Model.Message))
+        {
+            <div class="alert alert-ok alert-dismissible fade show" role="alert">
+                @Model.Message
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+        <form method="post" asp-page="" class="my-4">
+            <div class="row">
+                <div class="col">
+                    <label class="col-form-label">نقش</label>
+                    <select asp-items="@Model.Roles" data-target="CinemaRoleId"
+                        data-url='@Url.Page("/Account/CinemaRole","CinemaRoleAsSelect")' onchange="ajaxSelect(this)"
+                        class="form-select"></select>
+                </div>
+                <div class="col">
+                    <label class="col-form-label">زیر مجموعه</label>
+                    <select class="form-select" asp-for="@Model.CinemaRoleId"></select>
+                </div>
+                <div class="col d-flex align-items-end">
+                    <button type="submit" class="btn btn-danger">
+                        افزودن نقش
+                    </button>
+                </div>
+            </div>
+        </form>
+        <br>
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">نقش</th>
+                    <th scope="col">عملیات</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.List)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Role</td>
+                        <td>
+                            <form asp-page="./CinemaRole" asp-page-handler="Delete" class="d-grid col-md-3 col-6 mx-auto"
+                            onsubmit="return confirm('آیا مطمئن هستید...؟');">
+                                <input type="hidden" value="@item.Id" name="id">
+                                <button type="submit" class="btn btn-outline-danger">
+                                    حذف
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

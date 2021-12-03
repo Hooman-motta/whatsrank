@@ -1,0 +1,41 @@
+@model Tuple<string,byte?,string>
+
+<!-- Item3 : 1 => movie -->
+<!-- Item3 : 2 => user -->
+
+<div class="modal fade" id="voteModal" tabindex="-1" aria-labelledby="voteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="voteModalLabel"> امتیاز شما به <b class="text-warning">@Model.Item1</b>
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <ul class="options">
+                    @for (int i = 0; i <= ConstValues.MAX_VOTE; i++)
+                    {
+                        <li data-value="@i" class="@(i<=Model.Item2 ? "voted" : null)" onclick="voteModal(this)">
+                            <i class="las la-star"></i>
+                            <span class="vote-number">@i</span>
+                        </li>
+                    }
+                </ul>
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <b class="no-auth">برای ثبت رای ابتدا وارد شوید.</b>
+                }
+                else
+                {
+                    <form id="voteModalForm" class="m-auto" asp-page="@Model.Item3" asp-page-handler="SetVote"
+                    data-ajax="true" data-ajax-method="post" data-ajax-begin="ajaxBegin"
+                    data-ajax-complete="ajaxCmpVoteModal" data-ajax-failure="ajaxFailure">
+                        <input type="hidden" name="MarkValue" value="">
+                        <button type="submit" class="btn-submit">ثبت رای</button>
+                    </form>
+                }
+            </div>
+        </div>
+    </div>
+</div>

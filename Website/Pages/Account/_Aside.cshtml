@@ -1,0 +1,83 @@
+@inject UserManager<AppUser> _userManager;
+
+@{
+    var user = await _userManager.GetUserAsync(User);
+}
+<style>
+    .info-text {
+        font-size: .7rem;
+        padding: .8rem;
+        text-align: justify;
+        color: white;
+        line-height: 2;
+    }
+</style>
+
+<div id="user-sidebar" class="col-12 col-md-2 right">
+    <ul class="list-group">
+        <li class="list-group-item">
+            <img src="@user.Avatar" alt="">
+            <b class="title">
+                @user.DisplayName
+            </b>
+        </li>
+        <a asp-page="/Account/Index" class="list-group-item">
+            <i class="las la-user"></i>
+            <b class="title">
+                حساب کاربری
+            </b>
+        </a>
+        @if (await _userManager.IsInRoleAsync(user, ConstRoles.Artist))
+        {
+            <a asp-page="/Account/Resume" class="list-group-item">
+                <i class="las la-user"></i>
+                <b class="title">
+                    رزومه من
+                </b>
+            </a>
+            <a asp-page="/Account/CinemaRole" class="list-group-item">
+                <i class="las la-user"></i>
+                <b class="title">
+                    تخصص من
+                </b>
+            </a>
+        }
+
+        <a asp-page="/Account/ChangePassword" class="list-group-item">
+            <i class="las la-user"></i>
+            <b class="title">
+                تغییر کلمه عبور
+            </b>
+        </a>
+
+        <li class="list-group-item">
+            <form method="post" asp-page="/Account/Index" asp-page-handler="Logout">
+                <button type="submit" class="btn-submit">
+                    خروج
+                </button>
+            </form>
+        </li>
+    </ul>
+    <p class="info-text">
+        برای به نمایش در آمدن فیلم نمونه کار در صفحه پروفایل، فایل‌تون رو با تلگرام برای ما بفرستید( حداکثر حجم فایلتون
+        50 مگ باشه ) ما بعد از بارگذاری فیلم شما در کانال آپارات وب سایت" رتبه‌اش چنده؟" اونو توی صفحه پروفایلتون به
+        نمایش میزاریم. هر کاربر متخصص میتونه حداکثر 5 دقیقه از آثار خود را برای ما ارسال کنه. در زمان ارسال فایل نمونه
+        کار "نام کاربری" خودتون رو با دقت قید کنید.
+    </p>
+</div>
+
+<script>
+    activeSidebar();
+    function activeSidebar() {
+        let result = "";
+        let path = location.pathname.split("/");
+        if (path.length > 0) {
+            path.shift();
+            for (const item of path) {
+                result += `/${item.toLowerCase()}`;
+            }
+            document.querySelector(`#user-sidebar a[href^="${result}"]`)
+                .classList.add("selected");
+        }
+    }
+</script>

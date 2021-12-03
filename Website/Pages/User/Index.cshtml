@@ -1,0 +1,75 @@
+@page
+@model Website.Pages.User.IndexModel
+@{
+    ViewBag.Title = "بودن یا نبودن";
+}
+<h4 class="page-title">
+    بودن یا نبودن
+</h4>
+
+<p class="page-describe">
+    در این بخش هنرمندان میتوانند به معرفی خود و سوابق‌شان بپردازند.
+</p>
+
+<form method="GET" asp-page="" class="my-4">
+    <div class="row">
+        <div class="col">
+            <label class="col-form-label">استان</label>
+            <select class="form-select" asp-for="@Model.filter.province" asp-items="@Model.Provinces"></select>
+        </div>
+        <div class="col">
+            <label class="col-form-label">نقش</label>
+            <select asp-for="@Model.filter.cinemarole" asp-items="@Model.Roles" data-target="filter_scinemarole"
+                data-url='@Url.Page("/User/Index","CinemaRoleAsSelect")' onchange="ajaxSelect(this)"
+                class="form-select"></select>
+        </div>
+        <div class="col">
+            <label class="col-form-label">زیر مجموعه</label>
+            <select class="form-select" asp-for="@Model.filter.scinemarole"></select>
+        </div>
+        <div class="col d-flex align-items-end">
+            <button type="submit" class="btn btn-danger">
+                جستجو...
+            </button>
+        </div>
+    </div>
+</form>
+
+@if (Model.List.Any())
+{
+    <div class="user">
+        <div class="user-content">
+            @foreach (var item in Model.List)
+            {
+                <div class="box">
+                    <div class="top-box">
+                        <img src="@item.Avatar" alt="@item.DisplayName">
+                    </div>
+                    <div class="bottom-box">
+                        <div class="vote">
+                            <small class="avg">
+                                <i class="las la-star"></i>
+                                <b>@item.DisplayVoteAverage</b>
+                            </small>
+                        </div>
+                        <div class="caption">
+                            <b class="name">@item.Roles</b>
+                            <b class="role">@item.Province</b>
+                        </div>
+                        <a class="more" asp-page="/User/UserInfo" asp-route-id="@item.Id">
+                            <b class="name">@item.DisplayName</b>
+                        </a>
+                        <b class='status @(item.IsAvailable ? "available" : "")'></b>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <partial name="_Pagination" model='(Model.List.TotalPages)' />
+}
+else
+{
+    <h6 class="no-data">
+        اطلاعاتی وجود ندارد.
+    </h6>
+}

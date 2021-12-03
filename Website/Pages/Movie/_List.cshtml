@@ -1,0 +1,39 @@
+@model PaginatedList<Website.Pages.Movie.MovieBaseModel.ListModel>
+
+@if (Model.Any())
+{
+    <div class="row movie">
+        @foreach (var item in Model)
+        {
+            <div class="col-6 col-md-2 box">
+                <div class="top-box">
+                    <img src="@item.FriendlyUrl" alt="@item.Title">
+                </div>
+                <div class="bottom-box">
+                    <div class="vote">
+                        <small class="avg">
+                            <i class="las la-star"></i>
+                            <b>
+                                @item.DisplayVoteAverage
+                            </b>
+                        </small>
+                    </div>
+                    <div class="caption">
+                        <b class="name">@item.Title</b>
+                    </div>
+                    <a class="more" asp-page="/Movie/MovieInfo" asp-route-id="@item.Id"
+                asp-route-title="@item.Title.ToFriendlyRoute()">
+                        مشاهده و رای دادن
+                    </a>
+                </div>
+            </div>
+        }
+        <partial name="_Pagination" model='(Model.TotalPages)' />
+    </div>
+}
+else
+{
+    <h6 class="no-data">
+        اطلاعاتی وجود ندارد.
+    </h6>
+}

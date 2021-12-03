@@ -1,0 +1,82 @@
+@model IndexModel.InputModel
+
+<form asp-page="" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-3">
+            <label asp-for="Type" class="col-form-label"></label>
+            <div class="col">
+                <select class="form-select" asp-for="Type" asp-items="Html.GetEnumSelectList<VtyStarsWarType>()">
+                </select>
+            </div>
+            <span asp-validation-for="Type"></span>
+        </div>
+        <div class="col-3">
+            <label asp-for="Subject" class="col-form-label"></label>
+            <div class="col">
+                <select class="form-select" asp-for="Subject" asp-items="Html.GetEnumSelectList<VtyStarsWarSubject>()">
+                </select>
+            </div>
+            <span asp-validation-for="Subject"></span>
+        </div>
+        <div class="col-6">
+            <label asp-for="Title" class="col-form-label"></label>
+            <div class="col">
+                <input asp-for="Title" class="form-control">
+            </div>
+            <span asp-validation-for="Title"></span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <label asp-for="Question" class="col-form-label"></label>
+            <div class="col-sm-12">
+                <input asp-for="Question" class="form-control">
+            </div>
+            <span asp-validation-for="Question"></span>
+        </div>
+        <div class="col-6">
+            <label asp-for="KeyWord" class="col-form-label"></label>
+            <div class="col">
+                <input asp-for="KeyWord" class="form-control">
+            </div>
+            <span asp-validation-for="KeyWord"></span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-6">
+            <label asp-for="FormFile" class="col-form-label"></label>
+            <div class="col-sm-12">
+                <input asp-for="FormFile" class="form-control">
+            </div>
+            <span asp-validation-for="FormFile"></span>
+        </div>
+
+        <div class="col-6">
+            <label asp-for="VideoUrl" class="col-form-label"></label>
+            <div class="col-sm-12">
+                <input asp-for="VideoUrl" class="form-control ltr">
+            </div>
+            <span asp-validation-for="VideoUrl"></span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12" data-tags='@Url.Page("/Tags/Index","TagsList")'>
+            <label asp-for="Tags" class="col-form-label"></label>
+            <input asp-for="Tags">
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-12" data-source>
+            <textarea asp-for="Source"></textarea>
+        </div>
+    </div>
+
+    <div class="my-2">
+        <input type="hidden" asp-for="Id">
+        <button type="submit" class="btn btn-outline-dark">ثبت</button>
+    </div>
+</form>

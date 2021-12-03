@@ -1,0 +1,21 @@
+.my-alert {
+    margin: 1rem .5rem;
+
+    .alert {
+        margin: 0;
+        padding: .2rem;
+
+        .btn-close {
+            padding: 1rem;
+            font-size: .8rem;
+        }
+
+        ul {
+            li {
+                font-size: .8rem;
+                font-weight: bold;
+                background-color: transparent;
+            }
+        }
+    }
+}

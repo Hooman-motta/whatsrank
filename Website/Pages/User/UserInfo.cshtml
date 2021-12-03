@@ -1,0 +1,96 @@
+@page "{id}"
+@model Website.Pages.User.UserInfoModel
+@{
+    ViewBag.Title = Model.ViewResult.DisplayName;
+}
+
+<!-- modal -->
+<partial name="_VoteModal"
+    model='Tuple.Create<string,byte?,string>(Model.ViewResult.DisplayName,Model.ViewResult.UserMark,"/User/UserInfo")' />
+
+<section class="page-info">
+    <div class="row top-page">
+        <div class="col-12 col-md-2 right">
+            <img src="@Model.ViewResult.Avatar" alt="Model.ViewResult.DisplayName">
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <button type="button" class="btn-submit d-block text-center" data-bs-toggle="modal"
+                data-bs-target="#voteModal">
+                    ثبت رای شما
+                </button>
+            }
+            else
+            {
+                <button type="button" class="btn-submit" data-bs-toggle="modal" data-bs-target="#voteModal">
+                    <b class="text">ثبت رای شما</b>
+                    <span class="mark-value">
+                        <i class="lar la-star"></i>
+                        <b class="your-vote">
+                            @Model.ViewResult.UserMark
+                        </b>
+                    </span>
+                </button>
+            }
+        </div>
+
+        <article class="col-12 col-md-10 left">
+            <header class="left-top">
+                <div class="caption">
+                    <h4 class="caption-title">
+                        @Model.ViewResult.DisplayName
+                        @if (Model.ViewResult.IsAvailable)
+                        {
+                            <b class="avbl" style="background-color: green;"></b>
+                        }
+                        else
+                        {
+                            <b class="avbl" style="background-color: red;"></b>
+                        }
+                    </h4>
+                    <div class="caption-detail">
+                        <span>
+                            <i class="las la-map-marker" style="font-size: 1rem;color:white;margin: 0 .2rem;"></i>
+                            @Model.ViewResult.Province
+                        </span>
+                        <span>
+                            تحصیلات :
+                            @Model.ViewResult.Education
+                        </span>
+                    </div>
+                </div>
+
+                <div class="vote">
+                    <i class="las la-star"></i>
+                    <small>
+                        <b>@Model.ViewResult.DisplayVoteAverage</b>
+                        <b>@Model.ViewResult.VoteCount رای</b>
+                    </small>
+                </div>
+            </header>
+
+            <div class="left-summary">
+                <ul class="list-group list-group-flush left-main-role">
+                    <li class="list-group-item">پست الکترونیک :
+                        <span class="role"> @Model.ViewResult.Email</span>
+                    </li>
+                    <li class="list-group-item">شماره تماس :
+                        <span class="role"> @Model.ViewResult.PhoneNumber</span>
+                    </li>
+                </ul>
+            </div>
+        </article>
+    </div>
+
+    <div class="middle-page">
+        <div class="section-title">
+            <i class="las"></i>
+            <span>خلاصه</span>
+        </div>
+
+        <div class="middle-content">
+            <p class="describe">
+                @Model.ViewResult.Bio
+            </p>
+        </div>
+    </div>
+</section>

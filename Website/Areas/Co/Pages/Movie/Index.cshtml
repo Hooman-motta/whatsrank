@@ -1,0 +1,34 @@
+﻿@page
+@model Website.Areas.Co.Pages.Movie.IndexModel;
+@{
+    ViewBag.Title = "movie";
+    var createUrl = Url.Page("", "Create");
+}
+<partial name="_Alert" model="Model.Alert" />
+<div class="table-container">
+    <div class="table-container-header">
+        <button class="btn btn-outline-dark" onclick='ajaxLoadPartialForm(this)' data-title="افزودن فیلم"
+            data-url='@createUrl'>
+            افزودن
+        </button>
+        <form method="GET">
+            <input type="text" name="filter" class="form-control">
+            <input type="hidden" value="1" name="p" class="form-control">
+            <button type="submit" class="btn btn-outline-dark">
+                جستجو...
+            </button>
+        </form>
+    </div>
+    <div class="table-responsive" id="dataList">
+        <partial name="_List" model="Tuple.Create(MovieType.Film,Model.List)" />
+    </div>
+</div>
+
+@section Scripts{
+<partial name="_Tags" />
+<partial name="_Date" />
+<partial name="_Editor" />
+<script>
+    setModalXL();
+</script>
+}

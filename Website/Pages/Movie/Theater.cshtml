@@ -1,0 +1,18 @@
+@page
+@model Website.Pages.Movie.TheaterModel
+@{
+    var pageTitle = "تئاتر";
+    ViewBag.Title = pageTitle;
+}
+
+<h4 class="page-title">
+    @pageTitle
+</h4>
+
+<p class="page-describe">
+    در این بخش می‌ توانید در نظرسنجی کیفیت نمایش‌ ها و هنرمندان حاضر در این آثار شرکت کنید.
+</p>
+
+<partial name="_List" model="Model.List" />
+
+<vc:movie-top-ten type="Theater"></vc:movie-top-ten>

@@ -1,0 +1,274 @@
+@page "{id}"
+@model Website.Pages.Movie.MovieInfoModel
+@{
+    ViewBag.Title = Model.List.MovieTitle;
+    ViewBag.MetaKeywords = Model.List.KeyWord;
+}
+
+<h4 class="page-title">
+    شما به
+    <b class="text-danger">
+        @Model.List.MovieTitle
+    </b>
+    و عوامل تولیدش چه امتیازی می دهید؟
+</h4>
+
+<!-- modal -->
+<partial name="_VoteModal"
+    model='Tuple.Create<string,byte?,string>(Model.List.MovieTitle,Model.List.UserMark,"/Movie/MovieInfo")' />
+
+<section class="page-info movie-info">
+    <div class="row top-page">
+        <div class="col-12 col-md-2 right">
+            <img src="@Model.List.FriendlyUrl" alt="@Model.List.MovieTitle">
+            @if (!User.Identity.IsAuthenticated)
+            {
+                <button type="button" class="btn-submit d-block text-center" data-bs-toggle="modal"
+                data-bs-target="#voteModal">
+                    ثبت رای شما
+                </button>
+            }
+            else
+            {
+                <button type="button" class="btn-submit" data-bs-toggle="modal" data-bs-target="#voteModal">
+                    @if (Model.List.UserMark.HasValue)
+                    {
+                        <b class="text">تغییر رای شما</b>
+                    }
+                    else
+                    {
+                        <b class="text">ثبت رای شما</b>
+                    }
+                    <span class="mark-value">
+                        <i class="lar la-star"></i>
+                        <b class="your-vote">
+                            @Model.List.UserMark
+                        </b>
+                    </span>
+                </button>
+            }
+        </div>
+
+        <article class="col-12 col-md-9 left">
+            <header class="left-top">
+                <div class="caption">
+                    <h4 class="caption-title">
+                        @Model.List.MovieTitle
+                    </h4>
+                    <div class="caption-detail">
+                        <span>
+                            @Model.List.Time
+                        </span>
+                        <span>
+                            @Model.List.Jenre
+                        </span>
+                        <span>
+                            اکران :
+                            @Model.List.ReleaseDate
+                        </span>
+                    </div>
+                </div>
+
+                <div class="vote">
+                    <i class="las la-star"></i>
+                    <small>
+                        <b>@Model.List.DisplayVoteAverage</b>
+                        <b>@Model.List.VoteCount رای</b>
+                    </small>
+                </div>
+            </header>
+
+            <div class="left-summary">
+                <h6 class="title">خلاصه ای از :
+                    @Model.List.MovieTitle
+                </h6>
+
+                <section class="editor">
+                    @Html.Raw(WebUtility.HtmlDecode(Model.List.Source))
+                </section>
+
+                <ul class="list-group list-group-flush left-main-role">
+                    <li class="list-group-item">کارگردان :
+                        @foreach (var item in
+                        Model.List.Artists.Where(x => x.ArtistRole == CinemaRoleType.Director).ToList())
+                        {
+                            <span class="role">@item.FullName</span>
+                        }
+                    </li>
+                    <li class="list-group-item">نویسنده :
+                        @foreach (var item in
+                        Model.List.Artists.Where(x => x.ArtistRole == CinemaRoleType.Writer).ToList())
+                        {
+                            <span class="role">@item.FullName</span>
+                        }
+                    </li>
+                    <li class="list-group-item">تهیه کننده :
+                        @foreach (var item in
+                        Model.List.Artists.Where(x => x.ArtistRole == CinemaRoleType.Producer).ToList())
+                        {
+                            <span class="role">@item.FullName</span>
+                        }
+                    </li>
+                    <li class="list-group-item">بازیگران :
+                        @foreach (var item in
+                        Model.List.Artists.Where(x => x.ArtistRole == CinemaRoleType.Actor).Take(5).ToList())
+                        {
+                            <span class="role">@item.FullName</span>
+                        }
+                    </li>
+                </ul>
+        </article>
+    </div>
+
+    <!-- عوامل فیلم -->
+    <div class="middle-page">
+        <div class="section-title">
+            <i class="las"></i>
+            <span>عوامل فیلم</span>
+        </div>
+
+        <div class="middle-content">
+            @foreach (var item in Model.List.Artists.ToList())
+            {
+                <div class="box">
+                    <div class="top-box">
+                        <img src="@item.FriendlyUrl" alt="@item.FullName">
+                    </div>
+                    <div class="bottom-box">
+                        <div class="vote">
+                            <small class="avg">
+                                <i class="las la-star"></i>
+                                <b>@item.DisplayVoteAverage</b>
+                            </small>
+                        </div>
+                        <div class="caption">
+                            <a class="name-link" asp-page="/Artist/ArtistInfo" asp-route-id="@item.ArtistId"
+                            asp-route-title="@item.FullName.ToFriendlyRoute()">
+                                <b class="name">@item.FullName</b>
+                            </a>
+                            <b class="role">@item.ArtistRoleTitle</b>
+                        </div>
+                        <partial model='new VoteSelectVm{
+                            ItemId=item.AMRId,
+                            MarkValue=item.UserMark,
+                            RouteId=Model.List.MovieId,
+                            HandlerUrl="ArtistVote",
+                            PageUrl="/Movie/MovieInfo",
+                            UqId="amr"
+                        }' name="_VoteSelect" />
+                    </div>
+                </div>
+            }
+        </div>
+
+        @if (Model.List.MovieType == MovieType.Serial)
+        {
+            <div class="middle-serial">
+                <ul class="nav nav-tabs" id="serialTab" role="tablist">
+                    @foreach (var item in Model.List.SerialInfo)
+                    {
+                        var target = $"s{item.SeasonId}";
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="@(target)-tab" data-bs-toggle="tab" data-bs-target="#@target"
+                        type="button" role="tab" aria-controls="@target" aria-selected="false">
+                                @item.Season.Replace("-"," ")
+                            </button>
+                        </li>
+                    }
+                </ul>
+                <div class="tab-content" id="serialTabContent">
+                    @foreach (var item in Model.List.SerialInfo)
+                    {
+                        var target = $"s{item.SeasonId}";
+                        <div class="tab-pane fade" id="@target" role="tabpanel" aria-labelledby="@(target)-tab">
+                            @foreach (var child in item.Chapters)
+                            {
+                                var fileUrl = string.IsNullOrEmpty(child.FriendlyUrl) ?
+                                Model.List.FriendlyUrl : child.FriendlyUrl;
+                                <div class="box">
+                                    <div class="top-box">
+                                        <img src="\@fileUrl" alt="@Model.List.MovieTitle">
+                                    </div>
+                                    <div class="bottom-box">
+                                        <div class="vote">
+                                            <small class="avg">
+                                                <i class="las la-star"></i>
+                                                <b>@child.Vote</b>
+                                            </small>
+                                        </div>
+                                        <div class="caption">
+                                            <b class="name">@child.Chapter.Replace("-"," ")</b>
+                                        </div>
+                                        <partial model='new VoteSelectVm{
+                            ItemId=child.ChapterId,
+                            MarkValue=child.UserMark,
+                            RouteId=Model.List.MovieId,
+                            HandlerUrl="SerialVote",
+                            PageUrl="/Movie/MovieInfo",
+                            UqId="sv"
+                        }' name="_VoteSelect" />
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- فیلم های مشابه -->
+    <div class="similar-page">
+        <div class="section-title">
+            <i class="las"></i>
+            <span>فیلم های مشابه</span>
+        </div>
+        <div class="swiper-container mySwiper">
+            <div class="swiper-wrapper">
+                @foreach (var item in Model.List.SimilarMovies)
+                {
+                    <div class="swiper-slide">
+                        <div class="box">
+                            <div class="top-box">
+                                <img src="@item.FriendlyUrl" alt="@item.MovieTitle">
+                            </div>
+                            <div class="bottom-box">
+                                <div class="vote">
+                                    <small class="avg">
+                                        <i class="las la-star"></i>
+                                        @item.DisplayVoteAverage
+                                    </small>
+                                </div>
+                                <a class="more" asp-page="/Movie/MovieInfo" asp-route-id="@item.Id"
+                                asp-route-title="@item.MovieTitle.ToFriendlyRoute()">
+                                    <b class="name">@item.MovieTitle</b>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+<script src="~/libs/swiper/swiper.js"></script>
+<script>
+    const count = swipperCount();
+    new Swiper(".mySwiper", {
+        slidesPerView: count,
+        spaceBetween: 10,
+    });
+    configSerial();
+    function configSerial() {
+        let middleSerial = document.querySelector(".middle-serial");
+        if (middleSerial) {
+            middleSerial.querySelector(".nav li:first-child button")
+                .classList.add("active");
+            middleSerial.querySelector(".tab-content div:first-child")
+                .classList.add("show", "active");
+        }
+    }
+</script>
+}

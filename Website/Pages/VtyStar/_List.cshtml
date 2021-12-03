@@ -1,0 +1,30 @@
+@model PaginatedList<Website.Pages.VtyStar.VtyStarWarBaseModel.ListModel>
+@if (Model.Any())
+{
+    <div class="vtystar">
+        @foreach (var item in Model)
+        {
+            <div class="box">
+                <div class="top-box">
+                    <img src="@item.FriendlyUrl" alt="@item.Title">
+                </div>
+                <div class="bottom-box">
+                    <div class="caption">
+                        <b class="name">با موضوع @item.SubjectTitle</b>
+                    </div>
+                    <a asp-page="/VtyStar/VtyStarInfo" asp-route-id="@item.Id" asp-route-title="@item.Title.ToFriendlyRoute()"
+                class="more">
+                        @item.Title
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+    <partial name="_Pagination" model='(Model.TotalPages)' />
+}
+else
+{
+    <h6 class="no-data">
+        اطلاعاتی وجود ندارد.
+    </h6>
+}

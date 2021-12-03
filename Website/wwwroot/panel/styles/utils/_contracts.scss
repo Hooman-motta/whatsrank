@@ -1,0 +1,88 @@
+/*
+===================================
+Contracts.
+===================================
+*/
+$body-bg-color:#f0f0f0;
+$selection-color : white;
+$selection-bg-color : #0d0053;
+/*
+===================================
+contracts.
+===================================
+*/
+
+*,
+body {
+    // direction: rtl;
+    font-family: iran-yekan;
+
+    // firefox scrollbar
+    scrollbar-width: thin;
+
+    // chrome scrollbar
+    &::-webkit-scrollbar {
+        width: .5rem;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: $web-color-1;
+    }
+}
+
+
+body {
+    // background-color: $body-bg-color;
+}
+
+p {
+    line-height: 1.8rem;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+table caption {
+    caption-side: top !important;
+}
+
+input[type="number"] {
+    direction: ltr !important;
+}
+
+
+::selection {
+    color: $selection-color;
+    background-color: $selection-bg-color;
+}
+
+.rtl {
+    direction: rtl !important;
+}
+
+.ltr {
+    direction: ltr !important;
+}
+
+.radius-none {
+    border-radius: 0 !important;
+}
+
+
+// form
+input,
+button,
+select,
+.all-event-shadow-none {
+    @include hover-focus-active-visited {
+        outline: none !important;
+        box-shadow: none !important;
+    }
+}
+
+input,
+select {
+    font-size: .85rem !important;
+    padding: .5rem .75rem !important;
+}

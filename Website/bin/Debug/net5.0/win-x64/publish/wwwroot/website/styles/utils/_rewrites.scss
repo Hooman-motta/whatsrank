@@ -1,0 +1,80 @@
+//-----------
+// --- bootstrap
+//-----------
+.pagination {
+  flex-wrap: wrap;
+
+  .active {
+    pointer-events: none;
+  }
+
+  .page-item {
+    &:first-child {
+      .page-link {
+        border-top-left-radius: .25rem;
+        border-bottom-left-radius: .25rem;
+        border-top-right-radius: initial !important;
+        border-bottom-right-radius: initial !important;
+      }
+    }
+
+    &:last-child {
+      .page-link {
+        border-top-right-radius: .25rem;
+        border-bottom-right-radius: .25rem;
+        border-top-left-radius: initial !important;
+        border-bottom-left-radius: initial !important;
+      }
+    }
+  }
+}
+
+.col-form-label {
+  font-size: .8rem !important;
+}
+
+//-----------
+// --- notify
+//-----------
+.notifyjs-corner {
+  z-index: 10000 !important;
+}
+
+
+//-----------
+// --- validation
+//-----------
+.validation-summary-errors {
+  margin: .5rem;
+
+  ul {
+    margin: 0;
+    padding: 0;
+
+    li {
+      padding: .5rem;
+      font-size: .8rem;
+      color: $tc-yellow;
+      border-bottom: $b-type-0;
+
+      &:last-child {
+        border: none !important;
+      }
+    }
+  }
+}
+
+.table {
+  tr {
+    font-size: $fs-small;
+
+    td,
+    th {
+      border: none;
+      color: $tc-white;
+      text-align: center;
+      vertical-align: middle;
+      border-bottom: $b-type-0;
+    }
+  }
+}

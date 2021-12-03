@@ -1,0 +1,115 @@
+@page
+@inject UserManager<AppUser> _userManager
+@model Website.Pages.Account.IndexModel
+@{
+    var userId = User.Identity.GetUserId<string>();
+    var user = await _userManager.FindByIdAsync(userId);
+    var edu = user.Education.ToSelectList((byte)user.Education);
+    var states = Model.Provinces;
+    var stateInfo = await Model.SetProvinceCityAsync(user.ProvinceId ?? 0);
+    ViewBag.Title = user.UserName;
+}
+
+<div class="row user-panel">
+    <partial name="_Aside" model='Tuple.Create(user.UserName,user.Avatar)' />
+    <div class="col-12 col-md-9 left">
+        @if (!string.IsNullOrEmpty(Model.Message))
+        {
+            <div class="alert alert-ok alert-dismissible fade show" role="alert">
+                @Model.Message
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        }
+
+        <form method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-6 col-md-5">
+                    <div class="form-check form-check-inline">
+                        @if (user.IsAvailable)
+                        {
+                            <input asp-for="Input.IsAvailable" checked class="form-check-input">
+                        }
+                        else
+                        {
+                            <input asp-for="Input.IsAvailable" class="form-check-input">
+                        }
+                        <label asp-for="Input.IsAvailable" class="form-check-label mr-2"></label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row my-2">
+                <div class="col-6 col-md-6">
+                    <label asp-for="Input.FormFile" class="form-label"></label>
+                    <div class="col-sm-12">
+                        <input asp-for="Input.FormFile" class="form-control">
+                    </div>
+                    <span asp-validation-for="Input.FormFile"></span>
+                </div>
+                <div class="col-6 col-md-6">
+                    <label asp-for="Input.FullName" class="form-label"></label>
+                    <div class="col-sm-12">
+                        <input asp-for="Input.FullName" value="@user.FullName" class="form-control">
+                    </div>
+                    <span asp-validation-for="Input.FullName"></span>
+                </div>
+            </div>
+
+            <div class="row my-3">
+                <div class="col-6 col-md-6">
+                    <label asp-for="Input.Email" class="form-label"></label>
+                    <div class="col-sm-12">
+                        <input asp-for="Input.Email" value="@user.Email" class="form-control">
+                    </div>
+                    <span asp-validation-for="Input.Email"></span>
+                </div>
+                <div class="col-6 col-md-6">
+                    <label asp-for="Input.PhoneNumber" class="form-label"></label>
+                    <div class="col-sm-12">
+                        <input asp-for="Input.PhoneNumber" value="@user.PhoneNumber" class="form-control">
+                    </div>
+                    <span asp-validation-for="Input.PhoneNumber"></span>
+                </div>
+            </div>
+
+            <div class="row my-3">
+                <div class="col-6 col-md-6">
+                    <label class="form-label">استان : @(stateInfo != null ? stateInfo.Province : "---")</label>
+                    <select class="form-control" asp-items="@states" data-target="Input_ProvinceId"
+                        data-url='@Url.Page("/Account/Auth", pageHandler: "Towns")' onchange="ajaxSelect(this)">
+                        <option value="">انتخاب کنید...</option>
+                    </select>
+                </div>
+
+                <div class="col-6 col-md-3">
+                    <label class="form-label">شهر : @(stateInfo != null ? stateInfo.City : "---")</label>
+                    <select asp-for="Input.ProvinceId" class="form-control">
+                        <option value="">انتخاب کنید...</option>
+                    </select>
+                </div>
+                <div class="col-6 col-md-3">
+                    <label asp-for="Input.Education" class="form-label"></label>
+                    <select class="form-control" asp-for="Input.Education" asp-items="@edu"></select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-6 col-md-12">
+                    <label asp-for="Input.Bio" class="form-label"></label>
+                    <div class="col-sm-12">
+                        <textarea id="Input_Bio" name="Input.Bio" class="form-control" cols="5"
+                            rows="3">@user.Bio</textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group mt-3">
+                <button type="submit" class="btn-submit">
+                    ثبت
+                </button>
+            </div>
+
+            <div asp-validation-summary="All"></div>
+        </form>
+    </div>
+</div>

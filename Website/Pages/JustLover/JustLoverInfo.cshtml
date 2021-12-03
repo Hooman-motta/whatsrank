@@ -1,0 +1,148 @@
+@page "{id}"
+@model Website.Pages.JustLover.JustLoverInfoModel
+@{
+    ViewBag.Title = Model.List.Title;
+    var logged = User.Identity.IsAuthenticated;
+}
+
+<h4 class="page-title">
+    @Model.List.Question
+</h4>
+
+<section class="page-info">
+    <div class="row top-page">
+        <div class="col-12 col-md-6 right">
+            <div class="right-options">
+                @if (Model.List.Type == JustLoverType.Music)
+                {
+                    <img src="@Model.List.MusicFramUrl" alt="@Model.List.Title">
+                    <audio controls>
+                        <source src="\@Model.List.FriendlyUrl" type="audio/mpeg">
+                        <source src="\@Model.List.FriendlyUrl" type="audio/ogg">
+                    </audio>
+                }
+                else
+                {
+                    <img src="@Model.List.FriendlyUrl" alt="@Model.List.Title">
+                }
+                <h6 class="title">
+                    @Model.List.Title
+                    @if (Model.List.IsExpired)
+                    {
+                        var optionTitle = "";
+                        switch (Model.List.AnswerNO)
+                        {
+                            case 1:
+                                optionTitle = Model.List.option1.Value;
+                                break;
+                            case 2:
+                                optionTitle = Model.List.option2.Value;
+                                break;
+                            case 3:
+                                optionTitle = Model.List.option3.Value;
+                                break;
+                            case 4:
+                                optionTitle = Model.List.option4.Value;
+                                break;
+                            default:
+                                break;
+                        }
+                        <b class="answer-title">@optionTitle</b>
+                    }
+                </h6>
+            </div>
+        </div>
+
+        <article class="col-12 col-md-6 left">
+            <div class="left-options">
+                <form asp-page="/JustLover/JustLoverInfo" asp-page-handler="SetVote" data-ajax="true"
+                    data-ajax-method="post" data-ajax-begin="ajaxBegin" data-ajax-complete="ajaxCmpVoteOption"
+                    data-ajax-failure="ajaxFailure">
+                    <ul class="list-group list-group-flush">
+                        @for (int i = 1; i < 5; i++)
+                        {
+                            int voteCount = 0;
+                            var optionTitle = "";
+                            switch (i)
+                            {
+                                case 1:
+                                    voteCount = Model.List.option1.Key;
+                                    optionTitle = Model.List.option1.Value;
+                                    break;
+                                case 2:
+                                    voteCount = Model.List.option2.Key;
+                                    optionTitle = Model.List.option2.Value;
+                                    break;
+                                case 3:
+                                    voteCount = Model.List.option3.Key;
+                                    optionTitle = Model.List.option3.Value;
+                                    break;
+                                case 4:
+                                    voteCount = Model.List.option4.Key;
+                                    optionTitle = Model.List.option4.Value;
+                                    break;
+                                default:
+                                    break;
+                            }
+
+                            if (logged)
+                            {
+                                <li class="list-group-item" data-option="@i"
+                            data-selected='@(Model.List.UserNo == i ? "True" : "False")'>
+                                    <div class="form-check form-check-inline">
+                                        @if (Model.List.UserNo == i)
+                                        {
+                                            <input type="radio" value="@i" name="optionId" class="form-check-input" checked>
+                                        }
+                                        else
+                                        {
+                                            <input type="radio" value="@i" name="optionId" class="form-check-input">
+                                        }
+                                        <label class="form-check-label" for="optionId">@optionTitle</label>
+                                    </div>
+                                    <div class="vote">
+                                        <span class="vote-count">
+                                            @voteCount
+                                        </span>
+                                        <span class="vote-star">
+                                            رای
+                                            <i class="las la-star"></i>
+                                        </span>
+                                    </div>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="list-group-item" data-option="@i" data-selected="False">
+                                    <div class="form-check form-check-inline">
+                                        <input type="radio" value="@i" name="optionId" class="form-check-input">
+                                        <label class="form-check-label" for="optionId">@optionTitle</label>
+                                    </div>
+                                    <div class="vote">
+                                        <span class="vote-count">
+                                            @voteCount
+                                        </span>
+                                        <span class="vote-star">
+                                            رای
+                                            <i class="las la-star"></i>
+                                        </span>
+                                    </div>
+                                </li>
+                            }
+                        }
+                    </ul>
+                    @if (!logged)
+                    {
+                        <div class="d-flex justify-content-start m-3">
+                            <b class="no-auth">برای ثبت رای ابتدا وارد شوید.</b>
+                        </div>
+                    }
+                    else
+                    {
+                        <button type="submit" class="btn-submit">ثبت رای</button>
+                    }
+                </form>
+            </div>
+        </article>
+    </div>
+</section>

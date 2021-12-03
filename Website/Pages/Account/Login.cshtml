@@ -1,0 +1,77 @@
+@page
+@model Website.Pages.Account.LoginModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login</title>
+    <environment include="Development,Production">
+        <link rel="stylesheet" href="~/libs/boot/boot.css" />
+    </environment>
+    <style>
+        body {
+            margin: 1rem 0;
+            background-color: #ddd;
+        }
+
+        .login-form {
+            padding: 1rem;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        .validation-summary-errors ul {
+            line-height: 2;
+            font-size: .9rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-5 border login-form">
+                <form method="post" class="row g-2">
+                    <h4>Welcome Back</h4>
+                    <div class="col-12">
+                        <label asp-for="Input.Email"></label>
+                        <input asp-for="Input.Email" class="form-control">
+                        <div asp-validation-for="Input.Email" class="invalid-feedback"></div>
+                    </div>
+                    <div class="col-12">
+                        <label asp-for="Input.Password"></label>
+                        <input asp-for="Input.Password" class="form-control">
+                        <div asp-validation-for="Input.Password" class="invalid-feedback"></div>
+                    </div>
+
+                    <div class="row my-3">
+                        <div class="col">
+                            <input class="form-check-input" asp-for="Input.RememberMe">
+                            <label class="form-check-label" asp-for="Input.RememberMe"></label>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-dark float-end">Login</button>
+                    </div>
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <environment include="Development,Production">
+        <script src="~/libs/boot/popper.js"></script>
+        <script src="~/libs/boot/boot.js"></script>
+        <script src="~/libs/jquery/jquery.js"></script>
+
+        <script src="~/libs/jquery/jquery-validation.js"></script>
+        <script src="~/libs/jquery/validate.unobtrusive.js"></script>
+        <script src="~/libs/jquery/unobtrusive-ajax.js"></script>
+    </environment>
+</body>
+
+</html>

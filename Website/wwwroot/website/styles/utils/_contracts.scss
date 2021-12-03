@@ -1,0 +1,48 @@
+html {
+  scroll-behavior: smooth;
+}
+
+*,
+body {
+  direction: rtl;
+  outline: none !important;
+  font-family: $font-family;
+
+  // firefox scrollbar
+  scrollbar-width: thin;
+
+  // chrome scrollbar
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $web-color-2;
+  }
+}
+
+body {
+  background-color: $web-color-2;
+}
+
+ul {
+  list-style-type: none;
+}
+
+a {
+  color: $tc-gray;
+  text-decoration: none;
+
+  &:hover {
+    color: $tc-white;
+  }
+}
+
+
+.rtl {
+  direction: rtl !important;
+}
+
+.ltr {
+  direction: ltr !important;
+}

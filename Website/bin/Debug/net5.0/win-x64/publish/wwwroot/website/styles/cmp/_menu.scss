@@ -1,0 +1,41 @@
+// menu
+#menu {
+    top: 0;
+    left: 0;
+    z-index: 10;
+    width: 220px;
+    height: 100vh;
+    position: fixed;
+    transition: .5s all;
+    border-right: $b-type-0;
+    margin-left: -270px;
+    background-color: $bgc-type-2;
+
+    &.show {
+        margin-left: 0;
+    }
+
+    .top-menu {
+        padding: 1rem;
+        text-align: left;
+        border-bottom: $b-type-0;
+
+        a {
+            i {
+                font-size: $fs-large;
+            }
+        }
+    }
+
+    .bottom-menu {
+        display: flex;
+        line-height: 4;
+        flex-direction: column;
+
+        a {
+            text-align: right;
+            padding-right: 1.5rem;
+            font-size: $fs-small;
+        }
+    }
+}

@@ -1,0 +1,34 @@
+// varables
+@import "./utils/variables";
+
+
+// mixins
+@import "./mixins/media";
+@import "./mixins/events";
+@import "./mixins/helper";
+
+
+// utils 
+@import "./utils/shared";
+@import "./utils/contracts";
+@import "./utils/rewrites";
+
+
+// shared in all pages
+@import "./cmp/menu";
+@import "./cmp/header";
+@import "./cmp/footer";
+@import "./cmp/topten";
+@import "./cmp/auth";
+@import "./cmp/form";
+@import "./cmp/loading";
+@import "./cmp/alert";
+@import "./cmp/modal";
+
+
+// pages
+@import "./pages/boxing";
+@import "./pages/home";
+@import "./pages/base";
+@import "./pages/panel";
+@import "./pages/user";
